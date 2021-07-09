@@ -14,7 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 private var firebaseAuth: FirebaseAuth? = null
-private var firebaseFirestore : FirebaseFirestore? = null
+private var firebaseFirestore: FirebaseFirestore? = null
+
 
 class SignUpActivity : AppCompatActivity() {
 
