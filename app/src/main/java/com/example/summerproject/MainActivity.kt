@@ -3,7 +3,6 @@ package com.example.summerproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.summerproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
