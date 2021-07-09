@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.summerproject.databinding.ActivityMainBinding
 import com.example.summerproject.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 private var firebaseAuth: FirebaseAuth? = null
+private var firebaseFirestore : FirebaseFirestore? = null
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -20,37 +22,11 @@ class SignUpActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 
 		firebaseAuth = FirebaseAuth.getInstance()
+		firebaseFirestore = FirebaseFirestore.getInstance()
 
 		val binding = ActivitySignUpBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		supportActionBar?.hide();
-
-		//이메일 유효성 검사
-
-		binding.email.addTextChangedListener(object : TextWatcher {
-			override fun afterTextChanged(s: Editable?) {
-				val emailRegex = "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i"
-
-				if(binding.email.text.toString().equals(emailRegex)){
-					binding.btnRegister.isEnabled = true
-				} else {
-					binding.btnRegister.isEnabled = false
-				}
-			}
-
-			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-			}
-
-			override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-				val emailRegex = "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i"
-				if(binding.email.text.toString().equals(emailRegex)){
-					binding.btnRegister.isEnabled = true
-				} else {
-					binding.btnRegister.isEnabled = false
-				}
-			}
-		})
 
 		//비밀번호 -> 비밀번호 확인 검사
 		binding.passwordConfirm.addTextChangedListener(object : TextWatcher {
@@ -88,17 +64,28 @@ class SignUpActivity : AppCompatActivity() {
 			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 		})
 
-		binding.btnRegister.setOnClickListener {
-			var email = binding.email.text.toString()
-			var nickname = binding.nickname.text.toString()
-			var password = binding.password.text.toString()
-			var phoneNumber = binding.phoneNumber.text.toString()
+		data class UserDTO (
+			var uid :String? = null,
+			var email :String? = null,
+			var password :String? = null,
+			var nickname : String? = null,
+			var phoneNumber : String? = null
+		)
 
-			firebaseAuth!!.createUserWithEmailAndPassword(email, password)
+		binding.btnRegister.setOnClickListener {
+			var userDTO = UserDTO()
+			userDTO.uid = firebaseAuth?.currentUser?.uid
+			userDTO.email = binding.email.text.toString()
+			userDTO.nickname = binding.nickname.text.toString()
+			userDTO.password = binding.password.text.toString()
+			userDTO.phoneNumber = binding.phoneNumber.text.toString()
+
+			firebaseAuth!!.createUserWithEmailAndPassword(userDTO.email!!, userDTO.password!!)
 				.addOnCompleteListener(this) {
 					if (it.isSuccessful) {
 						val user = firebaseAuth?.currentUser
 						Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+						firebaseFirestore?.collection(firebaseAuth!!.currentUser!!.uid)?.document(userDTO.nickname!!)?.set(userDTO)
 
 						val intent = Intent(this, MainActivity::class.java)
 						startActivity(intent)
@@ -124,4 +111,4 @@ class SignUpActivity : AppCompatActivity() {
 // 회원가입시 파이어스토어에 닉네임과 전화번호 보내기
 // 로그인
 // 비밀번호 정규식 검사
-// 추가 :
+// 추가 : 게시판
