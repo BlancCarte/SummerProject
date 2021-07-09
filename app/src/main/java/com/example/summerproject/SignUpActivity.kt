@@ -73,6 +73,7 @@ class SignUpActivity : AppCompatActivity() {
 			var phoneNumber : String? = null
 		)
 
+
 		binding.btnRegister.setOnClickListener {
 			var userDTO = UserDTO()
 			userDTO.uid = firebaseAuth?.currentUser?.uid
