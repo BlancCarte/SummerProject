@@ -23,16 +23,15 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="35dp"
-        android:text="🍊오렌지마켓\n"
+        android:text="🍊오렌지마켓"
         android:textColor="#FF8C00"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:drawablePadding="5dip"
-        app:layout_constraintBottom_toTopOf="@+id/emailText"
+        android:layout_marginBottom="50dp"
         app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/emailText"
