@@ -25,48 +25,13 @@
         android:layout_width="210dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        android:hint="Email"
+        android:hint="로그인 성공"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/subView"
         android:background="@drawable/button_round"/>
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_round"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <Button
-        android:backgroundTint="#FF9614"
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        android:text="로그인"
-        app:layout_constraintEnd_toStartOf="@+id/subView2"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Button
-        android:backgroundTint="#FF9614"
-        android:id="@+id/goToSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="회원가입"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintStart_toEndOf="@+id/subView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
