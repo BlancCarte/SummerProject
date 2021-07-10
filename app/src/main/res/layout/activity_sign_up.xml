@@ -38,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="4dp"
+        android:textStyle="bold"
         android:text="이메일"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintStart_toStartOf="@+id/email"
@@ -58,10 +59,20 @@
         android:background="@drawable/button_round"/>
 
     <TextView
+        android:id="@+id/emailTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:textSize="10dp"/>
+
+    <TextView
         android:id="@+id/nicknameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="4dp"
+        android:textStyle="bold"
         android:text="별명"
         app:layout_constraintBottom_toTopOf="@+id/nickname"
         app:layout_constraintStart_toStartOf="@+id/nickname"
@@ -73,7 +84,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:padding="10dp"
-        android:hint="10글자 이내의 한글"
+        android:hint="한글, 영어, 숫자 2~10자"
         android:textSize="12sp"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,10 +93,20 @@
         android:background="@drawable/button_round"/>
 
     <TextView
+        android:id="@+id/nicknameTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        app:layout_constraintStart_toStartOf="@+id/nickname"
+        app:layout_constraintTop_toBottomOf="@+id/nickname"
+        android:textSize="10dp" />
+
+    <TextView
         android:id="@+id/passwordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="4dp"
+        android:textStyle="bold"
         android:text="비밀번호"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintStart_toStartOf="@+id/password"
@@ -112,14 +133,14 @@
         android:paddingStart="4dp"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        android:textSize="10dp"
-        android:textColor="#FF0000"/>
+        android:textSize="10dp"/>
 
     <TextView
         android:id="@+id/passwordConfirmText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="4dp"
+        android:textStyle="bold"
         android:text="비밀번호 확인"
         app:layout_constraintBottom_toTopOf="@+id/passwordConfirm"
         app:layout_constraintStart_toStartOf="@+id/passwordConfirm"
@@ -131,7 +152,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:padding="10dp"
-        android:hint="재입력"
+        android:hint="비밀번호 재입력"
         android:textSize="12sp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,10 +161,20 @@
         android:background="@drawable/button_round" />
 
     <TextView
+        android:id="@+id/passwordConfirmCheckText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        app:layout_constraintStart_toStartOf="@+id/passwordConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/passwordConfirm"
+        android:textSize="10dp"/>
+
+    <TextView
         android:id="@+id/phoneNumberText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="4dp"
+        android:textStyle="bold"
         android:text="전화번호"
         app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
         app:layout_constraintStart_toStartOf="@+id/phoneNumber"
@@ -156,23 +187,34 @@
         android:layout_marginTop="40dp"
         android:padding="10dp"
         android:hint="010xxxxyyyy"
-        android:inputType="textPassword"
+        android:maxLength="11"
+        android:inputType="phone"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordConfirm"
         android:background="@drawable/button_round" />
 
+    <TextView
+        android:id="@+id/phoneNumberTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        app:layout_constraintStart_toStartOf="@+id/phoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
+        android:textSize="10dp"/>
+
     <Button
         android:backgroundTint="#FF9614"
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="회원가입"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
+        />
 
     // android:enabled="false"
 
