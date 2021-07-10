@@ -32,21 +32,18 @@ class SignUpActivity : AppCompatActivity() {
 		binding.passwordConfirm.addTextChangedListener(object : TextWatcher {
 
 			override fun afterTextChanged(p0: Editable?) {
-				binding.btnRegister.isEnabled = binding.password.text.toString() == binding.passwordConfirm.text.toString() && binding.password.length() >= 7
-				/*if(binding.password.text.toString().equals(binding.passwordConfirm.text.toString()) && binding.password.length() >= 7){
-					binding.btnRegister.isEnabled = true
+				if(binding.password.text.toString().equals(binding.passwordConfirm.text.toString()) && binding.password.length() >= 8){
+				   binding.btnRegister.isEnabled = true
+					binding.passwordCheckText.setText("")
 				}else{
-					binding.btnRegister.isEnabled = false
-				}*/
+				   binding.btnRegister.isEnabled = false
+					binding.passwordCheckText.setText("비밀번호가 일치하지 않습니다")
+				}
 			}
 
-			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-				binding.btnRegister.isEnabled = false
-			}
+			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-			}
+			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 		})
 
 		//비밀번호 확인 -> 비밀번호 검사
@@ -54,12 +51,16 @@ class SignUpActivity : AppCompatActivity() {
 		binding.password.addTextChangedListener(object : TextWatcher {
 
 			override fun afterTextChanged(p0: Editable?) {
-				binding.btnRegister.isEnabled = binding.password.text.toString() == binding.passwordConfirm.text.toString() && binding.passwordConfirm.length() >= 7
+				if(binding.password.text.toString().equals(binding.passwordConfirm.text.toString()) && binding.passwordConfirm.length() >= 8){
+					binding.btnRegister.isEnabled = true
+					binding.passwordCheckText.setText("")
+				}else{
+					binding.btnRegister.isEnabled = false
+					binding.passwordCheckText.setText("비밀번호가 일치하지 않습니다")
+				}
 			}
 
-			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-				binding.btnRegister.isEnabled = false
-			}
+			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
 			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 		})
@@ -73,7 +74,6 @@ class SignUpActivity : AppCompatActivity() {
 			var phoneNumber : String? = null
 		)
 
-
 		binding.btnRegister.setOnClickListener {
 			var userDTO = UserDTO()
 			userDTO.uid = firebaseAuth?.currentUser?.uid
@@ -86,8 +86,8 @@ class SignUpActivity : AppCompatActivity() {
 				.addOnCompleteListener(this) {
 					if (it.isSuccessful) {
 						val user = firebaseAuth?.currentUser
-						Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
 						firebaseFirestore?.collection(firebaseAuth!!.currentUser!!.uid)?.document(userDTO.nickname!!)?.set(userDTO)
+						Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
 
 						val intent = Intent(this, MainActivity::class.java)
 						startActivity(intent)
@@ -104,13 +104,11 @@ class SignUpActivity : AppCompatActivity() {
 // 파이어베이스 잘 들어가는지 확인 (O)
 // 입력한 값이 파이어베이스에 들어가야 하니까 에딧텍스트에 입력 가능하게 해야함 (O)
 // 에딧 텍스트를 찾아서 온클릭 리스너를 적용 시켜야 한다 (O)
-// 이메일 비밀번호 전화번호 닉네임 유효성 검사
-// 닉네임이랑 전화번호는 쿼리문 사용해서 파이어스토어 디비에 넣기
-// 회원가입 성공시 로그인 페이지로 돌아가서 다시 로그인 시키기
-// 이메일 인증
-// 전화번호는 뺄지 말지 고민
+// 닉네임이랑 전화번호는 쿼리문 사용해서 파이어스토어 디비에 넣기(O)
+// 회원가입 성공시 로그인 페이지로 돌아가서 다시 로그인 시키기(O)
+// 회원가입시 파이어스토어에 닉네임과 전화번호 보내기(O)
+// 로그인(O)
 
-// 회원가입시 파이어스토어에 닉네임과 전화번호 보내기
-// 로그인
-// 비밀번호 정규식 검사
+// 이메일 비밀번호 전화번호 닉네임 유효성 검사
+// 이메일 인증
 // 추가 : 게시판
