@@ -4,4 +4,5 @@
     <string name="title_dashboard">중고거래 장터</string>
     <string name="title_notifications">알림</string>
     <string name="title_mypage">마이페이지</string>
+    <string name="menu_account"></string>
 </resources>

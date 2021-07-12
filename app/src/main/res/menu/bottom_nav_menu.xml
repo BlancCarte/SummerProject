@@ -20,6 +20,4 @@
         android:id="@+id/navigation_mypage"
         android:icon="@drawable/ic_mypage_black_24dp"
         android:title="@string/title_mypage" />
-
-
 </menu>
