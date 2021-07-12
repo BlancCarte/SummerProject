@@ -1,40 +1,19 @@
 {
   "project_info": {
-<<<<<<< HEAD
-    "project_number": "79172815125",
-    "project_id": "summerproject-3d555",
-    "storage_bucket": "summerproject-3d555.appspot.com"
-=======
     "project_number": "90730826798",
     "project_id": "summerproject-9c8ed",
     "storage_bucket": "summerproject-9c8ed.appspot.com"
->>>>>>> a47d2b74fac80e974bb60c97eac7d60e4f7e0c93
   },
   "client": [
     {
       "client_info": {
-<<<<<<< HEAD
-        "mobilesdk_app_id": "1:79172815125:android:e4e0b6ddd424cb7eaec11c",
-=======
         "mobilesdk_app_id": "1:90730826798:android:dfdcc49facfb6e9f8a23bf",
->>>>>>> a47d2b74fac80e974bb60c97eac7d60e4f7e0c93
         "android_client_info": {
           "package_name": "com.example.summerproject"
         }
       },
       "oauth_client": [
         {
-<<<<<<< HEAD
-          "client_id": "79172815125-paugkegfbqq53dolm9bs8en1cs8g35jo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.summerproject",
-            "certificate_hash": "862b9bd739c91045de1466f20c113b865adac184"
-          }
-        },
-        {
-          "client_id": "79172815125-aclt0la0k9ft5coviarkoh5ubbqe83up.apps.googleusercontent.com",
-=======
           "client_id": "90730826798-idfceastdreob5o1ncr30br99n65j281.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -44,28 +23,19 @@
         },
         {
           "client_id": "90730826798-6funtgjgqc07jc9cap8k0ipc2nsnk4sk.apps.googleusercontent.com",
->>>>>>> a47d2b74fac80e974bb60c97eac7d60e4f7e0c93
           "client_type": 3
         }
       ],
       "api_key": [
         {
-<<<<<<< HEAD
-          "current_key": "AIzaSyCcSVHeCg05Hmr3Yx7BqQz1Twc-f61Ygvs"
-=======
           "current_key": "AIzaSyAhkDvNvNo7GKFJmzj-TdH9kTNRfvT8Vdc"
->>>>>>> a47d2b74fac80e974bb60c97eac7d60e4f7e0c93
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-<<<<<<< HEAD
-              "client_id": "79172815125-aclt0la0k9ft5coviarkoh5ubbqe83up.apps.googleusercontent.com",
-=======
               "client_id": "90730826798-6funtgjgqc07jc9cap8k0ipc2nsnk4sk.apps.googleusercontent.com",
->>>>>>> a47d2b74fac80e974bb60c97eac7d60e4f7e0c93
               "client_type": 3
             }
           ]
