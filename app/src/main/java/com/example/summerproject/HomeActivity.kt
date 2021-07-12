@@ -1,4 +1,4 @@
-package com.example.androidterm
+package com.example.summerproject
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,7 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.R
 import com.example.summerproject.databinding.ActivityHomeBinding
-import com.example.summerproject.databinding.ActivityMainBinding
+
 
 class HomeActivity : AppCompatActivity() {
 
