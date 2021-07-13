@@ -37,6 +37,7 @@ class SignUpActivity : AppCompatActivity() {
 				var email = binding.email.text.toString()
 
 				if(email.matches(regex)){
+					binding.btnRegister.isEnabled = true
 					binding.emailTest.setTextColor(Color.parseColor("#369F36"))
 					binding.emailTest.setText("이메일이 입력되었습니다.")
 				}else{
@@ -46,11 +47,7 @@ class SignUpActivity : AppCompatActivity() {
 
 				}
 			}
-			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-				if(binding.email.length()==0) {
-					binding.btnRegister.isEnabled = false
-				}
-			}
+			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
 			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 		})
@@ -62,6 +59,7 @@ class SignUpActivity : AppCompatActivity() {
 				var nickname = binding.nickname.text.toString()
 
 				if(nickname.matches(regex)){
+					binding.btnRegister.isEnabled = true
 					binding.nicknameTest.setTextColor(Color.parseColor("#369F36"))
 					binding.nicknameTest.setText("별명이 입력되었습니다.")
 				}else{
@@ -82,6 +80,7 @@ class SignUpActivity : AppCompatActivity() {
 				var pw = binding.password.text.toString()
 
 				if(pw.matches(regex)){
+					binding.btnRegister.isEnabled = true
 					binding.passwordCheckText.setTextColor(Color.parseColor("#369F36"))
 					binding.passwordCheckText.setText("비밀번호가 입력되었습니다.")
 					if (binding.passwordConfirm.text.toString()==(binding.password.text.toString())){
@@ -112,6 +111,7 @@ class SignUpActivity : AppCompatActivity() {
 			override fun afterTextChanged(p0: Editable?) {
 				var pw = binding.password.text.toString()
 				if(binding.passwordConfirm.text.toString()==(binding.password.text.toString())){
+					binding.btnRegister.isEnabled = true
 					binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
 					binding.passwordConfirmCheckText.setText("비밀번호가 일치합니다.")
 				}else if(!(binding.passwordConfirm.text.toString()==(binding.password.text.toString()))){
@@ -136,7 +136,7 @@ class SignUpActivity : AppCompatActivity() {
 				var phnum = binding.phoneNumber.text.toString()
 				var regex = Regex("01[016789][0-9]{3,4}[0-9]{4}$")
 				if(phnum.matches(regex)){
-
+					binding.btnRegister.isEnabled = true
 					binding.phoneNumberTest.setTextColor(Color.parseColor("#369F36"))
 					binding.phoneNumberTest.setText("입력되었습니다.")
 				}
@@ -151,8 +151,6 @@ class SignUpActivity : AppCompatActivity() {
 
 			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 		})
-
-
 
 		// 게터세터
 		data class UserDTO(
