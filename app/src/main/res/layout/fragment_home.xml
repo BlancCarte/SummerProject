@@ -6,46 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <ImageView
-        android:id="@+id/PhotoImg"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="4dp"
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
-    <TextView
-        android:id="@+id/ItemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/PhotoImg"
-        app:layout_constraintTop_toTopOf="@+id/PhotoImg"
-        tools:text="원목욕조"/>
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/PhotoImg"
-        app:layout_constraintStart_toStartOf="@+id/ItemName"
-        tools:text="300,000원" />
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/price"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toTopOf="@+id/price"
-        tools:text="한번도 안썼어요~" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
