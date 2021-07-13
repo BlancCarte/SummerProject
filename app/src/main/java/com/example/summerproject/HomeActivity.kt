@@ -29,17 +29,11 @@ class HomeActivity  : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         firebaseAuth = FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
-
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_home_black_24dp)  // 왼쪽 버튼 아이콘 설정
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setSupportActionBar(binding.homeToolbar.toolbar)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -55,19 +49,28 @@ class HomeActivity  : AppCompatActivity() {
         return true
     }
 
+
     //액션버튼 클릭 했을 때
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
-            R.id.action_search->{ //회원정보 버튼 눌렀을 때
+            R.id.action_search->{ //검색 버튼 눌렀을 때
+                Toast.makeText(applicationContext, "검색 실행", Toast.LENGTH_SHORT).show()
+                return super.onOptionsItemSelected(item)
+            }
+            R.id.action_notification-> { //알림 버튼 눌렀을 때
+                Toast.makeText(applicationContext, "알림 실행", Toast.LENGTH_SHORT).show()
+                return super.onOptionsItemSelected(item)
+            }
+            R.id.action_userinfo->{//회원정보 눌렀을 때
                 Toast.makeText(applicationContext, "회원정보 실행", Toast.LENGTH_SHORT).show()
                 return super.onOptionsItemSelected(item)
             }
-            R.id.action_search-> { //설정 버튼 눌렀을 때
-                Toast.makeText(applicationContext, "설정 실행", Toast.LENGTH_LONG).show()
+            R.id.action_option->{//회원정보 눌렀을 때
+                Toast.makeText(applicationContext, "설정 실행", Toast.LENGTH_SHORT).show()
                 return super.onOptionsItemSelected(item)
             }
             R.id.action_logout-> { //로그아웃 버튼 눌렀을 때
-                Toast.makeText(applicationContext, "로그아웃 실행", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "로그아웃 실행", Toast.LENGTH_SHORT).show()
                 firebaseAuth!!.signOut();
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -76,6 +79,6 @@ class HomeActivity  : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
-   
+
 
 }

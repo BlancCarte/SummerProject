@@ -26,17 +26,13 @@ class MypageFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val view = inflater.inflate(R.layout.fragment_mypage,container, false)
         mypageViewModel =
             ViewModelProvider(this).get(MypageViewModel::class.java)
 
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textMypage
-        mypageViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

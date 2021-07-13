@@ -24,7 +24,11 @@ class MainActivity : AppCompatActivity() {
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide();
+
+        if(firebaseAuth!!.currentUser!=null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.goToSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
