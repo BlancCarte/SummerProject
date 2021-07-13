@@ -43,4 +43,4 @@ class MypageFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}4
+}
