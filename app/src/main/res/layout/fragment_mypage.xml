@@ -19,8 +19,8 @@
         android:layout_height="75dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="@id/profile"
-        app:layout_constraintEnd_toEndOf="@id/profile"
+        app:layout_constraintStart_toStartOf="@id/profile_modify"
+        app:layout_constraintEnd_toEndOf="@id/profile_modify"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
@@ -31,8 +31,8 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/profile"
-        app:layout_constraintEnd_toEndOf="@+id/profile"
+        app:layout_constraintStart_toStartOf="@+id/profile_modify"
+        app:layout_constraintEnd_toEndOf="@+id/profile_modify"
         app:layout_constraintTop_toBottomOf="@+id/PhotoImg"
         tools:text="김규호"/>
 
@@ -58,7 +58,7 @@
         tools:text="#10101010" />
 
     <Button
-        android:id="@+id/profile"
+        android:id="@+id/profile_modify"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
@@ -72,21 +72,10 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="15dp"
-        android:text="판매내역"
         android:background="@drawable/ic_launcher_background"
-        app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:layout_constraintStart_toStartOf="@id/profile" />
-
-    <TextView
-        android:id="@+id/sale_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/profile"
-        app:layout_constraintTop_toBottomOf="@+id/history_sale"
-
-        tools:text="판매내역" />
+        android:text="판매내역"
+        app:layout_constraintTop_toBottomOf="@+id/profile_modify"
+        app:layout_constraintStart_toStartOf="@id/profile_modify" />
 
     <Button
         android:id="@+id/history_purchase"
@@ -96,7 +85,7 @@
         android:layout_marginLeft="70dp"
         android:background="@drawable/ic_launcher_background"
         android:text="구매내역"
-        app:layout_constraintTop_toBottomOf="@+id/profile"
+        app:layout_constraintTop_toBottomOf="@+id/profile_modify"
         app:layout_constraintStart_toEndOf="@+id/history_sale" />
 
     <Button
@@ -106,7 +95,6 @@
         android:layout_marginLeft="70dp"
         android:background="@drawable/ic_launcher_background"
         android:text="관심목록"
-        app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:layout_constraintEnd_toEndOf="@+id/profile" />
-
+        app:layout_constraintTop_toBottomOf="@+id/profile_modify"
+        app:layout_constraintEnd_toEndOf="@+id/profile_modify" />
 </androidx.constraintlayout.widget.ConstraintLayout>
