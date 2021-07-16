@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SummerProject">
         <activity android:name=".HomeActivity"
-                  android:theme="@style/Theme.SummerProject.NoActionBar">
+            android:theme="@style/Theme.SummerProject.NoActionBar">
         </activity>
+
         <activity android:name=".SignUpActivity"
             android:theme="@style/Theme.SummerProject.NoActionBar">
-            </activity>
+        </activity>
+
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.SummerProject.NoActionBar">
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -25,7 +28,3 @@
     </application>
 
 </manifest>
-
-
-
-

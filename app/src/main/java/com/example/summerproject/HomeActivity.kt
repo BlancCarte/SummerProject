@@ -1,28 +1,26 @@
 package com.example.summerproject
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
-import com.example.summerproject.databinding.FragmentMypageBinding
-import com.example.summerproject.ui.dashboard.DashboardFragment
-import com.example.summerproject.ui.mypage.MypageFragment
+import com.example.summerproject.ui.dashboard.DashBoardFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 
 private var firebaseAuth: FirebaseAuth? = null
 
-class HomeActivity  : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,19 +28,17 @@ class HomeActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar.homeToolbar)
+        setSupportActionBar(binding.toolbar)
 
         val navView: BottomNavigationView = binding.bottomNavView
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+        val navController = findNavController(R.id.fragment_host)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_mypage
+                R.id.homeFragment, R.id.dashboardFragment, R.id.notificationFragment, R.id.myPageFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,11 +77,10 @@ class HomeActivity  : AppCompatActivity() {
         }
     }
 
-    fun replaceFragment(){
-        val textFragment = DashboardFragment()
+    fun replaceFragment(fragment : Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_home, textFragment).commit()
+        fragmentTransaction.replace(R.id.fragment_host, fragment).commit()
 
     }
 }
