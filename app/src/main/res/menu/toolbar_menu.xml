@@ -14,9 +14,11 @@
         android:icon="@drawable/ic_notifications_black_24dp"
         app:showAsAction="always" />
 
-    <item android:title="회원정보" />
+    <item android:title="회원정보"
+        android:id="@+id/action_userinfo"/>
 
-    <item android:title="설정" />
+    <item android:title="설정"
+        android:id="@+id/action_option"/>
 
     <item
         android:id="@+id/action_logout"

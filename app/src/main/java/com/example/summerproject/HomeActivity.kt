@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar.toolbar)
+        setSupportActionBar(binding.toolbar.homeToolbar)
 
         val navView: BottomNavigationView = binding.bottomNavView
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
@@ -65,16 +65,15 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "알림 실행", Toast.LENGTH_SHORT).show()
                 return super.onOptionsItemSelected(item)
             }
-            /*
-            R.id.action_userinfo->{//회원정보 눌렀을 때
-                 Toast.makeText(applicationContext, "회원정보 실행", Toast.LENGTH_SHORT).show()
-                 return super.onOptionsItemSelected(item)
-             }
-             R.id.action_option->{//설정 눌렀을 때
-                 Toast.makeText(applicationContext, "설정 실행", Toast.LENGTH_SHORT).show()
-                 return super.onOptionsItemSelected(item)
-             }
-             */
+            R.id.action_userinfo -> {//회원정보 눌렀을 때
+                Toast.makeText(applicationContext, "회원정보 실행", Toast.LENGTH_SHORT).show()
+                return super.onOptionsItemSelected(item)
+            }
+            R.id.action_option -> {//설정 눌렀을 때
+                Toast.makeText(applicationContext, "설정 실행", Toast.LENGTH_SHORT).show()
+                return super.onOptionsItemSelected(item)
+            }
+
 
             R.id.action_logout -> { //로그아웃 버튼 눌렀을 때
                 Toast.makeText(applicationContext, "로그아웃 실행", Toast.LENGTH_SHORT).show()

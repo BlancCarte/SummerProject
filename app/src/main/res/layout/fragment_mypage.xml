@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mypage.MypageFragment">
+    tools:context=".ui.mypage.MypageFragment"
+    android:background="#ffffff"
+    android:clickable="true">
 
         <View
             android:id="@+id/subView"
@@ -72,19 +74,10 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/ic_baseline_attach_money_24"
+            android:background="@drawable/ic_launcher_background"
+            android:text="판매내역"
             app:layout_constraintStart_toStartOf="@id/profile_modify"
             app:layout_constraintTop_toBottomOf="@+id/profile_modify" />
-
-        <TextView
-            android:id="@+id/sale_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/profile_modify"
-            app:layout_constraintTop_toBottomOf="@+id/history_sale"
-            tools:text="판매내역" />
 
         <Button
             android:id="@+id/history_purchase"
