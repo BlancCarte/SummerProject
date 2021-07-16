@@ -6,17 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/PhotoImg"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textShortMessage"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/PhotoImg"
+                app:layout_constraintTop_toTopOf="@+id/PhotoImg"
+                tools:text="원목욕조" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/itemName"
+                app:layout_constraintTop_toTopOf="@+id/PhotoImg"
+                tools:text="2021.07.13" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintTop_toTopOf="@+id/PhotoImg"
+                tools:text="300,000원" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textLongMessage"
+                android:paddingStart="10dp"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/PhotoImg"
+                app:layout_constraintTop_toBottomOf="@+id/PhotoImg"
+                tools:text="한번도 안썼어요~" />
+
+            <ImageView
+                android:id="@+id/PhotoImg1"
+                android:layout_width="52dp"
+                android:layout_height="300dp"
+                app:layout_constraintStart_toStartOf="@+id/PhotoImg"
+                app:layout_constraintTop_toBottomOf="@+id/PhotoImg"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <ImageView
+                android:id="@+id/PhotoImg2"
+                android:layout_width="52dp"
+                android:layout_height="300dp"
+                app:layout_constraintStart_toStartOf="@+id/PhotoImg1"
+                app:layout_constraintTop_toBottomOf="@+id/PhotoImg1"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <ImageView
+                android:id="@+id/PhotoImg3"
+                android:layout_width="52dp"
+                android:layout_height="1000dp"
+                app:layout_constraintStart_toStartOf="@+id/PhotoImg2"
+                app:layout_constraintTop_toBottomOf="@+id/PhotoImg2"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="등록"
+                app:layout_constraintEnd_toEndOf="@+id/PhotoImg"
+                app:layout_constraintTop_toBottomOf="@+id/PhotoImg" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,11 +32,17 @@ class MypageFragment : Fragment() {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textMypage
-        mypageViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.profileModify.setOnClickListener(){
+            Toast.makeText(context,"123",Toast.LENGTH_SHORT).show()
+            mainActivity.replaceFragment()
+
+        }
     }
 
     override fun onDestroyView() {
