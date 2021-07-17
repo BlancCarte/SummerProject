@@ -8,15 +8,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
-import com.example.summerproject.databinding.FragmentMypageBinding
 import com.example.summerproject.ui.dashboard.DashboardFragment
-import com.example.summerproject.ui.mypage.MypageFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.summerproject.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -32,16 +26,11 @@ class HomeActivity  : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar.homeToolbar)
 
-        val navView: BottomNavigationView = binding.bottomNavView
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_mypage
-            )
+        val transaction =supportFragmentManager.beginTransaction()
+        transaction.add(
+            R.id.fragment, HomeFragment()
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
+        transaction.commit()
 
     }
 
