@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.summerproject.R
 import com.example.summerproject.databinding.FragmentHomeBinding
 
-
-
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
