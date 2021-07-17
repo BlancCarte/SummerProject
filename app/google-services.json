@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "448650924533",
-    "project_id": "summerproject-f627f",
-    "storage_bucket": "summerproject-f627f.appspot.com"
+    "project_number": "186765550789",
+    "project_id": "summerproject-659d2",
+    "storage_bucket": "summerproject-659d2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:448650924533:android:ed7a57b1fe85ebb87b50bc",
+        "mobilesdk_app_id": "1:186765550789:android:7b102cad155c1981f7bcac",
         "android_client_info": {
           "package_name": "com.example.summerproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "448650924533-kt54srjq82oktperg4igv100m97nmt4t.apps.googleusercontent.com",
+          "client_id": "186765550789-df3aekbnt1v042k3v8ehj4j5ta32ubob.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDdTtOhL6ap1lygmuETUtdHfo6s94Ur7CY"
+          "current_key": "AIzaSyCK3k79dgum81Dlv5F4k3a62zFTgxO7rnY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "448650924533-kt54srjq82oktperg4igv100m97nmt4t.apps.googleusercontent.com",
+              "client_id": "186765550789-df3aekbnt1v042k3v8ehj4j5ta32ubob.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
