@@ -11,8 +11,6 @@ import com.example.summerproject.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-
-
 private var firebaseAuth: FirebaseAuth? = null
 
 class MainActivity : AppCompatActivity() {
