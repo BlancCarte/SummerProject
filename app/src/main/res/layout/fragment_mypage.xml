@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myPageFragment"
-    tools:context="com.example.summerproject.ui.mypage.MyPageFragment">
+    tools:context="com.example.summerproject.ui.mypage.MyPageFragment"
+    android:background="#ffffff"
+    android:clickable="true">
 
     <View
         android:id="@+id/subView"

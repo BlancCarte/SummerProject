@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notificationFragment"
-    tools:context="com.example.summerproject.ui.notification.NotificationFragment">
+    tools:context="com.example.summerproject.ui.notification.NotificationFragment"
+    android:background="#ffffff"
+    android:clickable="true">
 
 
     <TextView

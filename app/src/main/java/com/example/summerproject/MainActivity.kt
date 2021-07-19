@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 private var firebaseAuth: FirebaseAuth? = null
+var backKeyPressedTime : Long = 0
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,19 @@ class MainActivity : AppCompatActivity() {
 */
         binding.btnLogin.setOnClickListener {
             login(binding.email.text.toString(), binding.password.text.toString())
+        }
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        if(System.currentTimeMillis() > backKeyPressedTime+2500){
+            backKeyPressedTime = System.currentTimeMillis()
+
+            return
+        }
+
+        if(System.currentTimeMillis() <= backKeyPressedTime+2500){
+            finishAffinity()
         }
     }
 
