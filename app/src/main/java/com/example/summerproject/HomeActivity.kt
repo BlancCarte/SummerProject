@@ -13,7 +13,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
-import com.example.summerproject.ui.dashboard.DashBoardFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -45,7 +44,6 @@ class HomeActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
     }
-
 
     //액션버튼 클릭 했을 때
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

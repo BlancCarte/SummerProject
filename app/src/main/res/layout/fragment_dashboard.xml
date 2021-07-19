@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dashboardFragment"
     tools:context="com.example.summerproject.ui.dashboard.DashBoardFragment"
-    android:background="#ffffff"
+    android:background="#FFFFFF"
     android:clickable="true">
 
     <TextView

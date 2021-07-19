@@ -45,8 +45,6 @@ class SignUpActivity : AppCompatActivity() {
                     binding.emailTest.setText("이메일을 형식에 맞춰 입력해주세요")
 
                 }
-
-
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

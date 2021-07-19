@@ -11,6 +11,8 @@ import com.example.summerproject.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+
+
 private var firebaseAuth: FirebaseAuth? = null
 var backKeyPressedTime : Long = 0
 
@@ -56,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         //super.onBackPressed()
         if(System.currentTimeMillis() > backKeyPressedTime+2500){
             backKeyPressedTime = System.currentTimeMillis()
-
             return
         }
 

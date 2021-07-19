@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/homeFragment"
     tools:context="com.example.summerproject.ui.home.HomeFragment"
-    android:background="#ffffff"
+    android:background="#FFFFFF"
     android:clickable="true">
 
     <TextView
