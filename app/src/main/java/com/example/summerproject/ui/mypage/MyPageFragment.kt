@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.summerproject.HomeActivity
-import com.example.summerproject.R
 import com.example.summerproject.databinding.FragmentMypageBinding
 import com.example.summerproject.ui.dashboard.DashBoardFragment
 

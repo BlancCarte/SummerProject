@@ -15,13 +15,13 @@
         android:label="fragment_mypage"
         tools:layout="@layout/fragment_mypage" />
     <fragment
-        android:id="@+id/dashBoardFargment"
-        android:name="com.example.summerproject.ui.dashboard.DashBoardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-    <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.summerproject.ui.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.summerproject.ui.dashboard.DashBoardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>
