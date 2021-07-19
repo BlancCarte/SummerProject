@@ -13,10 +13,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
-import com.example.summerproject.ui.dashboard.DashBoardFragment
+import com.example.summerproject.ui.dashboard.DashboardFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-
 
 private var firebaseAuth: FirebaseAuth? = null
 

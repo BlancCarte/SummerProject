@@ -82,5 +82,4 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintStart_toEndOf="@+id/subView2" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

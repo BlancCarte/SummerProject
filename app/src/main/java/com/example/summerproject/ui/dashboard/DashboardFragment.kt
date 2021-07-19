@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.summerproject.databinding.FragmentDashboardBinding
 
-class DashBoardFragment : Fragment() {
+class DashboardFragment : Fragment() {
 
     private var mBinding : FragmentDashboardBinding? = null
     override fun onCreateView(

@@ -4,8 +4,10 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/myPageFragment"
-    tools:context="com.example.summerproject.ui.mypage.MyPageFragment">
+    android:id="@+id/mypageFragment"
+    tools:context="com.example.summerproject.ui.mypage.MypageFragment"
+    android:background="#FFFFFF"
+    android:clickable="true">
 
     <View
         android:id="@+id/subView"

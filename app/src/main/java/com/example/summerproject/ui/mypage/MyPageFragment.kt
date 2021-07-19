@@ -8,20 +8,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.summerproject.HomeActivity
-import com.example.summerproject.R
 import com.example.summerproject.databinding.FragmentMypageBinding
-import com.example.summerproject.ui.dashboard.DashBoardFragment
+import com.example.summerproject.ui.dashboard.DashboardFragment
 
 
-class MyPageFragment : Fragment() {
-    private var mainActivity: HomeActivity? =null
+class MypageFragment : Fragment() {
+    private var mainActivity: HomeActivity? = null
     private var mBinding: FragmentMypageBinding? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mainActivity=context as HomeActivity
+        mainActivity = context as HomeActivity
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,10 +37,9 @@ class MyPageFragment : Fragment() {
         super.onStart()
         mBinding?.profileModify?.setOnClickListener() {
             Toast.makeText(context, "123", Toast.LENGTH_SHORT).show()
-            mainActivity?.replaceFragment(DashBoardFragment())
+            mainActivity?.replaceFragment(DashboardFragment())
         }
     }
-
 
     override fun onDestroyView() {
         mBinding = null
@@ -48,4 +47,3 @@ class MyPageFragment : Fragment() {
     }
 
 }
-
