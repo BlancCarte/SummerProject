@@ -1,21 +1,21 @@
-package com.example.summerproject.ui.home
+package com.example.summerproject.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.summerproject.databinding.FragmentHomeBinding
+import com.example.summerproject.databinding.FragmentDashboardBinding
 
-class HomeFragment : Fragment() {
+class DashBoardFragment : Fragment() {
 
-    private var mBinding : FragmentHomeBinding? = null
+    private var mBinding : FragmentDashboardBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentHomeBinding.inflate(inflater,container,false)
+        val binding = FragmentDashboardBinding.inflate(inflater,container,false)
 
         mBinding = binding
 
