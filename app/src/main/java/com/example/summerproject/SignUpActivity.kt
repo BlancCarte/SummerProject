@@ -5,15 +5,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.summerproject.databinding.ActivityMainBinding
 import com.example.summerproject.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 private var firebaseAuth: FirebaseAuth? = null
 private var firebaseFirestore: FirebaseFirestore? = null
@@ -59,7 +55,7 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var regex = Regex("[가-힣a-zA-Z0-9]{2,10}")
                 var nickname = binding.nickname.text.toString()
-               if(nickname.matches(regex)){
+                if(nickname.matches(regex)){
                     binding.nicknameTest.setTextColor(Color.parseColor("#369F36"))
                     binding.nicknameTest.setText("별명이 입력되었습니다.")
                 }
@@ -80,7 +76,7 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var regex = Regex("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@!%*#?&]).{8,15}")
                 var pw = binding.password.text.toString()
-               if (pw.matches(regex)) {
+                if (pw.matches(regex)) {
                     binding.passwordCheckText.setTextColor(Color.parseColor("#369F36"))
                     binding.passwordCheckText.setText("비밀번호가 입력되었습니다.")
                     if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
@@ -89,7 +85,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     }
                 }
-                    else {
+                else {
                     binding.passwordCheckText.setTextColor(Color.parseColor("#ff0000"))
                     binding.passwordCheckText.setText("비밀번호를 형식에 맞춰 입력해주세요.")
                     binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
@@ -111,7 +107,7 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var pw = binding.password.text.toString()
                 var pwconfirm = binding.passwordConfirm.text.toString()
-               if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
+                if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
                     binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
                     binding.passwordConfirmCheckText.setText("비밀번호가 일치합니다.")
                 }
@@ -138,7 +134,7 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var phnum = binding.phoneNumber.text.toString()
                 var regex = Regex("01[016789][0-9]{3,4}[0-9]{4}$")
-              if (phnum.matches(regex)) {
+                if (phnum.matches(regex)) {
                     binding.phoneNumberTest.setTextColor(Color.parseColor("#369F36"))
                     binding.phoneNumberTest.setText("입력되었습니다.")
                 }

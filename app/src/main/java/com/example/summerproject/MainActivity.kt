@@ -26,22 +26,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         binding.goToSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 /*
         binding.password.addTextChangedListener(object : TextWatcher {
-
             override fun afterTextChanged(p0: Editable?) {
                 binding.btnLogin.isEnabled =  binding.password.length() >= 7
             }
-
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 binding.btnLogin.isEnabled = false
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 */
