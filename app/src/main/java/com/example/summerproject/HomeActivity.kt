@@ -45,7 +45,6 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-
     //액션버튼 클릭 했을 때
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){

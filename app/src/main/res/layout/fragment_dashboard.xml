@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dashboardFragment"
-    tools:context="com.example.summerproject.ui.dashboard.DashBoardFragment">
+    tools:context="com.example.summerproject.ui.dashboard.DashBoardFragment"
+    android:background="#FFFFFF"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/dashboard_Fragment_title"
