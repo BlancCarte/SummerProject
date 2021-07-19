@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.summerproject.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
+
+
 private var firebaseAuth: FirebaseAuth? = null
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide();
+
+        if(firebaseAuth!!.currentUser!=null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
 
         binding.goToSignUp.setOnClickListener {
@@ -50,9 +56,15 @@ class MainActivity : AppCompatActivity() {
         } else if(email.isNotEmpty() && password.isNotEmpty()){
             firebaseAuth?.signInWithEmailAndPassword(email, password)?.addOnCompleteListener(this) { task ->
                 if(task.isSuccessful){
-                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
+                    var user= firebaseAuth!!.currentUser!!.isEmailVerified
+                    if (user) {
+                        Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(this, "로그인 실패, 이메일 인증을 확인해주세요", Toast.LENGTH_SHORT).show()
+                    }
                 }else{
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }
