@@ -10,9 +10,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
+import com.example.summerproject.ui.home.HomeFragment
+import com.example.summerproject.ui.mypage.MypageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class HomeActivity  : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -25,20 +27,28 @@ class HomeActivity  : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.homeToolbar.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
-
-        appBarConfiguration = AppBarConfiguration(setOf
-            (R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_mypage)
+        val navController = findNavController(R.id.frameLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf
+                (
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications,
+                R.id.navigation_mypage
+            )
         )
-
 
         val bottomNavView: BottomNavigationView = binding.bottomNavView
 
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
+
+
+        setFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -47,7 +57,26 @@ class HomeActivity  : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+        val navController = findNavController(R.id.frameLayout)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun setFragment() {
+        val homeFragment: HomeFragment = HomeFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+            .add(R.id.frameLayout, homeFragment)
+        transaction.commit()
+    }
+
+    fun goMypage() {
+        val mypageFragment: MypageFragment = MypageFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+            .add(R.id.frameLayout, mypageFragment)
+        transaction.addToBackStack("mypage")
+        transaction.commit()
+    }
+
+    fun goBack(){
+        onBackPressed()
     }
 }

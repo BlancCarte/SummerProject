@@ -5,4 +5,11 @@
     <string name="title_notifications">알림</string>
     <string name="title_mypage">마이페이지</string>
     <string name="action_settings">Settings</string>
+    
+    <string-array name="test">
+        <item>정재헌</item>
+        <item>신범석</item>
+    </string-array>
+
+
 </resources>
