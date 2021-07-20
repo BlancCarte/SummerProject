@@ -35,8 +35,7 @@ class MyPageFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         mBinding?.profileModify?.setOnClickListener() {
-            Toast.makeText(context, "123", Toast.LENGTH_SHORT).show()
-            mainActivity?.replaceFragment(DashBoardFragment())
+            mainActivity?.replaceFragment(ModifyFragment())
         }
     }
 
