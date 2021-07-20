@@ -171,8 +171,8 @@ class SignUpActivity : AppCompatActivity() {
                 firebaseAuth!!.createUserWithEmailAndPassword(userDTO.email!!, userDTO.password!!)
                     .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-                            firebaseFirestore?.collection(firebaseAuth!!.currentUser!!.uid)
-                                ?.document(userDTO.nickname!!)?.set(userDTO)
+                            firebaseFirestore?.collection("userinfo")
+                                ?.document(userDTO.email!!)?.set(userDTO)
                             val user = firebaseAuth!!.currentUser
                             user!!.sendEmailVerification()
                                 .addOnCompleteListener { task ->

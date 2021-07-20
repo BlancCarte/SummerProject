@@ -9,16 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.summerproject.HomeActivity
 import com.example.summerproject.databinding.FragmentMypageBinding
-import com.example.summerproject.ui.dashboard.DashBoardFragment
 
 
 class MyPageFragment : Fragment() {
-    private var mainActivity: HomeActivity? =null
+    private var homeActivity: HomeActivity? =null
     private var mBinding: FragmentMypageBinding? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mainActivity=context as HomeActivity
+        homeActivity=context as HomeActivity
 
     }
     override fun onCreateView(
@@ -35,8 +34,8 @@ class MyPageFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         mBinding?.profileModify?.setOnClickListener() {
-            Toast.makeText(context, "123", Toast.LENGTH_SHORT).show()
-            mainActivity?.replaceFragment(DashBoardFragment())
+            Toast.makeText(context, "프로필 수정", Toast.LENGTH_SHORT).show()
+            homeActivity?.replaceFragment(ModifyFragment())
         }
     }
 

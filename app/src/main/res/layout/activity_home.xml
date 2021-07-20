@@ -9,18 +9,12 @@
     android:weightSum="1"
     >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="wrap_content"
+    <include
+        android:id="@+id/main_toolbar"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:theme="@style/Theme.Test.AppBarOverlay">
+        android:layout_height="wrap_content" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Test.PopupOverlay" />
-    </com.google.android.material.appbar.AppBarLayout>
 
     <!-- 프레그먼트 들이 보여질 컨테이너 뷰-->
     <fragment
