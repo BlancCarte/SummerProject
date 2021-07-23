@@ -2,6 +2,7 @@ package com.example.summerproject
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -17,9 +18,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 private var firebaseAuth: FirebaseAuth? = null
+private var firebaseFirestore: FirebaseFirestore? = null
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
