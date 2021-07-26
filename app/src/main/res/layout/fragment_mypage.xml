@@ -101,4 +101,27 @@
         app:layout_constraintEnd_toEndOf="@+id/profile_modify"
         app:layout_constraintTop_toBottomOf="@+id/profile_modify" />
 
+
+    <Button
+        android:id="@+id/profile_password"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:text="비밀번호 변경"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/history_purchase" />
+
+    <Button
+        android:id="@+id/profile_delete"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:text="탈퇴"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_password" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
