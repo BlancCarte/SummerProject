@@ -71,6 +71,17 @@
         app:layout_constraintTop_toBottomOf="@+id/content" />
 
     <Button
+        android:id="@+id/profile_delete"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:text="탈퇴"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/history_purchase" />
+
+
+    <Button
         android:id="@+id/history_sale"
         android:layout_width="70dp"
         android:layout_height="70dp"
