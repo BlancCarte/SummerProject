@@ -26,12 +26,7 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if(firebaseAuth!!.currentUser!=null){
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
-
-        if(firebaseAuth!!.currentUser!=null){
+        if(firebaseAuth!!.currentUser!=null && firebaseAuth!!.currentUser!!.isEmailVerified){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
