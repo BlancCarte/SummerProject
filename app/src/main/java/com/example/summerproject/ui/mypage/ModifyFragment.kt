@@ -1,6 +1,7 @@
 package com.example.summerproject.ui.mypage
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -8,7 +9,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.summerproject.HomeActivity
@@ -64,28 +64,28 @@ class ModifyFragment : Fragment() {
 			}
 
 /*
-		//이메일 유효성검사
-		mBinding!!.modifyNickname.addTextChangedListener(object : TextWatcher {
-			override fun afterTextChanged(p0: Editable?) {
-				var regex =
-					Regex("[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}")
-				var email = mBinding!!.modifyNickname.text.toString()
-				if (email.matches(regex)) {
-					mBinding!!.modifyEmailTest.setTextColor(Color.parseColor("#369F36"))
-					mBinding!!.modifyEmailTest.setText("이메일이 입력되었습니다.")
+      //이메일 유효성검사
+      mBinding!!.modifyNickname.addTextChangedListener(object : TextWatcher {
+         override fun afterTextChanged(p0: Editable?) {
+            var regex =
+               Regex("[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}")
+            var email = mBinding!!.modifyNickname.text.toString()
+            if (email.matches(regex)) {
+               mBinding!!.modifyEmailTest.setTextColor(Color.parseColor("#369F36"))
+               mBinding!!.modifyEmailTest.setText("이메일이 입력되었습니다.")
 
-				}
-				else{
-					mBinding!!.modifyEmailTest.setTextColor(Color.parseColor("#ff0000"))
-					mBinding!!.modifyEmailTest.setText("이메일을 형식에 맞춰 입력해주세요")
+            }
+            else{
+               mBinding!!.modifyEmailTest.setTextColor(Color.parseColor("#ff0000"))
+               mBinding!!.modifyEmailTest.setText("이메일을 형식에 맞춰 입력해주세요")
 
-				}
-			}
+            }
+         }
 
-			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-		})
+         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+      })
 
  */
 
@@ -112,6 +112,7 @@ class ModifyFragment : Fragment() {
 		})
 
 		//비밀번호 -> 비밀번호 확인 검사
+		/*
 		mBinding!!.modifyPassword.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(p0: Editable?) {
 				var regex = Regex("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@!%*#?&]).{8,15}")
@@ -170,7 +171,7 @@ class ModifyFragment : Fragment() {
 			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
 		})
-
+*/
 		//전화번호
 		mBinding!!.modifyPhoneNumber.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(p0: Editable?) {
@@ -201,36 +202,35 @@ class ModifyFragment : Fragment() {
 		mBinding!!.btnModify.setOnClickListener {
 			var userDTO = UserDTO()
 			userDTO.nickname = mBinding!!.modifyNickname.text.toString()
-			userDTO.password = mBinding!!.modifyPassword.text.toString()
+			//userDTO.password = mBinding!!.modifyPassword.text.toString()
 			userDTO.phoneNumber = mBinding!!.modifyPhoneNumber.text.toString()
-			var passwordconfrim = mBinding!!.modifyPasswordConfirm.text.toString()
+			//var passwordconfrim = mBinding!!.modifyPasswordConfirm.text.toString()
 			var currentemail = firebaseAuth!!.currentUser?.email.toString()
 
 			var ref = Firebase.firestore!!.collection("userinfo").document(currentemail)
 
-			firebaseFirestore!!.collection("userinfo").document(currentemail).get()
+			ref.get()
 				.addOnSuccessListener { documentSnapshot ->
-					val password = documentSnapshot.get("password").toString()
+					//val password = documentSnapshot.get("password").toString()
 
 					var map = mutableMapOf<String, Any>()
 
 					map["phoneNumber"] = userDTO.phoneNumber!!
-					map["password"] = userDTO.password!!
+					//map["password"] = userDTO.password!!
 					map["nickname"] = userDTO.nickname!!
 
-					if (userDTO.nickname!!.isNotEmpty() && userDTO.password!!.isNotEmpty() && passwordconfrim!!.isNotEmpty() && userDTO.phoneNumber!!.isNotEmpty() && userDTO.password != password) {
+					if (userDTO.nickname!!.isNotEmpty() && userDTO.phoneNumber!!.isNotEmpty()) {
 						ref.update(map).addOnCompleteListener { task ->
 							if (task.isSuccessful) {
-								firebaseAuth!!.currentUser!!.updatePassword(userDTO.password!!)
 								Toast.makeText(context, "업데이트", Toast.LENGTH_SHORT).show()
-								mainActivity?.replaceFragment(MyPageFragment())
+								firebaseAuth!!.signOut();
+								val intent = Intent(activity, MainActivity::class.java)
+								startActivity(intent)
 							} else {
 								Toast.makeText(context, "업데이트 실패", Toast.LENGTH_SHORT).show()
 							}
 						}
-					} else if(userDTO.password == password){
-						Toast.makeText(context, "이전 비밀번호와 일치합니다", Toast.LENGTH_SHORT).show()
-					} else if(userDTO.nickname!!.isEmpty() || userDTO.password!!.isEmpty() || passwordconfrim!!.isEmpty() || userDTO.phoneNumber!!.isEmpty()){
+					} else if(userDTO.nickname!!.isEmpty() ||  userDTO.phoneNumber!!.isEmpty()){
 						Toast.makeText(context, "빈칸을 확인해주세요", Toast.LENGTH_SHORT).show()
 					} else{
 						Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
