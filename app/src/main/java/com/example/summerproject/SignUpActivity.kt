@@ -38,12 +38,13 @@ class SignUpActivity : AppCompatActivity() {
                 if (email.matches(regex)) {
                     binding.emailTest.setTextColor(Color.parseColor("#369F36"))
                     binding.emailTest.setText("이메일이 입력되었습니다.")
+                    binding.btnRegister.isEnabled = true
 
                 }
                 else{
                     binding.emailTest.setTextColor(Color.parseColor("#ff0000"))
                     binding.emailTest.setText("이메일을 형식에 맞춰 입력해주세요")
-
+                    binding.btnRegister.isEnabled = false
                 }
             }
 
@@ -57,13 +58,15 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var regex = Regex("[가-힣a-zA-Z0-9]{2,10}")
                 var nickname = binding.nickname.text.toString()
-               if(nickname.matches(regex)){
+                if(nickname.matches(regex)){
                     binding.nicknameTest.setTextColor(Color.parseColor("#369F36"))
                     binding.nicknameTest.setText("별명이 입력되었습니다.")
+                    binding.btnRegister.isEnabled = true
                 }
                 else {
                     binding.nicknameTest.setTextColor(Color.parseColor("#ff0000"))
                     binding.nicknameTest.setText("별명을 형식에 맞춰 입력해주세요.")
+                    binding.btnRegister.isEnabled = false
 
                 }
             }
@@ -78,22 +81,25 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var regex = Regex("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@!%*#?&]).{8,15}")
                 var pw = binding.password.text.toString()
-               if (pw.matches(regex)) {
+                if (pw.matches(regex)) {
                     binding.passwordCheckText.setTextColor(Color.parseColor("#369F36"))
                     binding.passwordCheckText.setText("비밀번호가 입력되었습니다.")
+                    binding.btnRegister.isEnabled = true
                     if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
                         binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
                         binding.passwordConfirmCheckText.setText("비밀번호가 일치합니다.")
-
+                        binding.btnRegister.isEnabled = true
+                    }
+                    else if (binding.passwordConfirm.text.toString() != (binding.password.text.toString())){
+                        binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
+                        binding.passwordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
+                        binding.btnRegister.isEnabled = false
                     }
                 }
-                    else {
+                else {
                     binding.passwordCheckText.setTextColor(Color.parseColor("#ff0000"))
                     binding.passwordCheckText.setText("비밀번호를 형식에 맞춰 입력해주세요.")
-                    binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    binding.passwordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
-
-
+                    binding.btnRegister.isEnabled = false
                 }
 
             }
@@ -109,17 +115,20 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var pw = binding.password.text.toString()
                 var pwconfirm = binding.passwordConfirm.text.toString()
-               if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
+                if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
                     binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
                     binding.passwordConfirmCheckText.setText("비밀번호가 일치합니다.")
+                    binding.btnRegister.isEnabled = true
                 }
-                else if (!(binding.passwordConfirm.text.toString() == (binding.password.text.toString()))) {
+                else if (binding.passwordConfirm.text.toString() != (binding.password.text.toString())) {
                     binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
                     binding.passwordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
+                    binding.btnRegister.isEnabled = false
 
                 } else {
                     binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
                     binding.passwordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
+                    binding.btnRegister.isEnabled = false
 
                 }
 
@@ -136,13 +145,15 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 var phnum = binding.phoneNumber.text.toString()
                 var regex = Regex("01[016789][0-9]{3,4}[0-9]{4}$")
-              if (phnum.matches(regex)) {
+                if (phnum.matches(regex)) {
                     binding.phoneNumberTest.setTextColor(Color.parseColor("#369F36"))
                     binding.phoneNumberTest.setText("입력되었습니다.")
+                    binding.btnRegister.isEnabled = true
                 }
                 else {
                     binding.phoneNumberTest.setTextColor(Color.parseColor("#ff0000"))
                     binding.phoneNumberTest.setText("핸드폰 형식이 아닙니다.")
+                    binding.btnRegister.isEnabled = false
                 }
             }
 
@@ -171,6 +182,7 @@ class SignUpActivity : AppCompatActivity() {
             userDTO.password = binding.password.text.toString()
             var passwordconfrim = binding.passwordConfirm.text.toString()
             userDTO.phoneNumber = binding.phoneNumber.text.toString()
+
             if(userDTO.email!!.isNotEmpty() && userDTO.nickname!!.isNotEmpty() &&userDTO.password!!.isNotEmpty()&& passwordconfrim!!.isNotEmpty()&& userDTO.phoneNumber!!.isNotEmpty() ){
                 firebaseAuth!!.createUserWithEmailAndPassword(userDTO.email!!, userDTO.password!!)
                     .addOnCompleteListener(this) {
