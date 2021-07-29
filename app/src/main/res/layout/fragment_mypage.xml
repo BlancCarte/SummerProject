@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="@+id/profile_modify"
         app:layout_constraintEnd_toEndOf="@+id/profile_modify"
         app:layout_constraintTop_toBottomOf="@+id/PhotoImg"
-        tools:text="김규호"/>
+        android:text="김규호"/>
 
     <TextView
         android:id="@+id/price"
@@ -47,7 +47,7 @@
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintStart_toEndOf="@+id/history_purchase"
-        tools:text="홍천읍" />
+        android:text="홍천읍" />
 
     <TextView
         android:id="@+id/content"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/price"
         app:layout_constraintStart_toEndOf="@+id/price"
         app:layout_constraintTop_toTopOf="@+id/price"
-        tools:text="#10101010" />
+        android:text="#10101010" />
 
     <Button
         android:id="@+id/profile_modify"
