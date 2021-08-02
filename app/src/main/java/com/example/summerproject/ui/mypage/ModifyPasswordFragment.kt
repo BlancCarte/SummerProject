@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.summerproject.HomeActivity
+import com.example.summerproject.LoginActivity
 import com.example.summerproject.MainActivity
 import com.example.summerproject.databinding.FragmentModifyPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -26,12 +26,12 @@ private var firebaseFirestore: FirebaseFirestore? = null
 
 class ModifyPasswordFragment : Fragment() {
 
-    private var mainActivity: HomeActivity? = null
+    private var mainActivity: MainActivity? = null
     private var mBinding: FragmentModifyPasswordBinding? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mainActivity = context as HomeActivity
+        mainActivity = context as MainActivity
 
     }
 
@@ -136,7 +136,7 @@ class ModifyPasswordFragment : Fragment() {
                                 firebaseAuth!!.currentUser!!.updatePassword(userDTO.password!!)
                                 Toast.makeText(context, "업데이트", Toast.LENGTH_SHORT).show()
                                 firebaseAuth!!.signOut()
-                                val intent = Intent(activity, MainActivity::class.java)
+                                val intent = Intent(activity, LoginActivity::class.java)
                                 startActivity(intent)
                                 mainActivity?.replaceFragment(MyPageFragment())
                             } else {

@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.summerproject.HomeActivity
+import com.example.summerproject.LoginActivity
 import com.example.summerproject.MainActivity
 import com.example.summerproject.databinding.FragmentModifyBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,12 +23,12 @@ private var firebaseAuth: FirebaseAuth? = null
 private var firebaseFirestore: FirebaseFirestore? = null
 
 class ModifyFragment : Fragment() {
-    private var mainActivity: HomeActivity? = null
+    private var mainActivity: MainActivity? = null
     private var mBinding: FragmentModifyBinding? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mainActivity = context as HomeActivity
+        mainActivity = context as MainActivity
 
     }
 
@@ -63,31 +63,6 @@ class ModifyFragment : Fragment() {
                 mBinding!!.modifyPhoneNumber.setText(phoneNumber)
             }
 
-/*
-      //이메일 유효성검사
-      mBinding!!.modifyNickname.addTextChangedListener(object : TextWatcher {
-         override fun afterTextChanged(p0: Editable?) {
-            var regex =
-               Regex("[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}")
-            var email = mBinding!!.modifyNickname.text.toString()
-            if (email.matches(regex)) {
-               mBinding!!.modifyEmailTest.setTextColor(Color.parseColor("#369F36"))
-               mBinding!!.modifyEmailTest.setText("이메일이 입력되었습니다.")
-
-            }
-            else{
-               mBinding!!.modifyEmailTest.setTextColor(Color.parseColor("#ff0000"))
-               mBinding!!.modifyEmailTest.setText("이메일을 형식에 맞춰 입력해주세요")
-
-            }
-         }
-
-         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-      })
-
- */
 
         //닉네임 유효성검사
         mBinding!!.modifyNickname.addTextChangedListener(object : TextWatcher {
@@ -107,71 +82,9 @@ class ModifyFragment : Fragment() {
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-        //비밀번호 -> 비밀번호 확인 검사
-        /*
-        mBinding!!.modifyPassword.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                var regex = Regex("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@!%*#?&]).{8,15}")
-                var pw = mBinding!!.modifyPassword.text.toString()
-                if (pw.matches(regex)) {
-                    mBinding!!.modifyPasswordCheckText.setTextColor(Color.parseColor("#369F36"))
-                    mBinding!!.modifyPasswordCheckText.setText("비밀번호가 입력되었습니다.")
-                    if (mBinding!!.modifyPasswordConfirm.text.toString() == (mBinding!!.modifyPassword.text.toString())) {
-                        mBinding!!.modifyPasswordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
-                        mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치합니다.")
-                        mBinding!!.btnModify.isEnabled = true
-                    } else if (mBinding!!.modifyPasswordConfirm.text.toString() != (mBinding!!.modifyPassword.text.toString())){
-                        mBinding!!.modifyPasswordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                        mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
-                        mBinding!!.btnModify.isEnabled = false
-                    }
-                } else {
-                    mBinding!!.modifyPasswordCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    mBinding!!.modifyPasswordCheckText.setText("비밀번호를 형식에 맞춰 입력해주세요.")
-                    mBinding!!.modifyPasswordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
-                    mBinding!!.btnModify.isEnabled = false
-                }
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-        })
-
-        //비밀번호 확인 -> 비밀번호 검사
-        //TextWatcher : 원하는 규칙에 대해서 실시간으로 검증하기 위해
-        mBinding!!.modifyPasswordConfirm.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                var pw = mBinding!!.modifyPassword.text.toString()
-                var pwconfirm = mBinding!!.modifyPasswordConfirm.text.toString()
-                if (mBinding!!.modifyPasswordConfirm.text.toString() == (mBinding!!.modifyPassword.text.toString())) {
-                    mBinding!!.modifyPasswordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
-                    mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치합니다.")
-                    mBinding!!.btnModify.isEnabled = true
-                } else if (!(mBinding!!.modifyPasswordConfirm.text.toString() == (mBinding!!.modifyPassword.text.toString()))) {
-                    mBinding!!.modifyPasswordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
-                    mBinding!!.btnModify.isEnabled = false
-                } else {
-                    mBinding!!.modifyPasswordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
-                    mBinding!!.btnModify.isEnabled = false
-                }
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-        })
-*/
         //전화번호
         mBinding!!.modifyPhoneNumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -202,21 +115,17 @@ class ModifyFragment : Fragment() {
         mBinding!!.btnModify.setOnClickListener {
             var userDTO = UserDTO()
             userDTO.nickname = mBinding!!.modifyNickname.text.toString()
-            //userDTO.password = mBinding!!.modifyPassword.text.toString()
             userDTO.phoneNumber = mBinding!!.modifyPhoneNumber.text.toString()
-            //var passwordconfrim = mBinding!!.modifyPasswordConfirm.text.toString()
             var currentemail = firebaseAuth!!.currentUser?.email.toString()
 
             var ref = Firebase.firestore!!.collection("userinfo").document(currentemail)
 
             ref.get()
                 .addOnSuccessListener { documentSnapshot ->
-                    //val password = documentSnapshot.get("password").toString()
 
                     var map = mutableMapOf<String, Any>()
 
                     map["phoneNumber"] = userDTO.phoneNumber!!
-                    //map["password"] = userDTO.password!!
                     map["nickname"] = userDTO.nickname!!
 
                     if (userDTO.nickname!!.isNotEmpty() && userDTO.phoneNumber!!.isNotEmpty()) {
@@ -224,7 +133,7 @@ class ModifyFragment : Fragment() {
                             if (task.isSuccessful) {
                                 Toast.makeText(context, "업데이트", Toast.LENGTH_SHORT).show()
                                 firebaseAuth!!.signOut();
-                                val intent = Intent(activity, MainActivity::class.java)
+                                val intent = Intent(activity, LoginActivity::class.java)
                                 startActivity(intent)
                             } else {
                                 Toast.makeText(context, "업데이트 실패", Toast.LENGTH_SHORT).show()

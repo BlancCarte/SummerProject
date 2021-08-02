@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.summerproject.HomeActivity
+import com.example.summerproject.LoginActivity
 import com.example.summerproject.MainActivity
 import com.example.summerproject.databinding.AlertdialogEdittextBinding
 import com.example.summerproject.databinding.FragmentMypageBinding
@@ -22,12 +22,12 @@ private var firebaseAuth: FirebaseAuth? = null
 private var firebaseFirestore: FirebaseFirestore? = null
 
 class MyPageFragment : Fragment() {
-    private var mainActivity: HomeActivity? = null
+    private var mainActivity: MainActivity? = null
     private var mBinding: FragmentMypageBinding? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mainActivity = context as HomeActivity
+        mainActivity = context as MainActivity
 
     }
 
@@ -126,7 +126,7 @@ class MyPageFragment : Fragment() {
                                 user.delete().addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(context, "탈퇴 완료", Toast.LENGTH_SHORT).show()
-                                        val intent = Intent(activity, MainActivity::class.java)
+                                        val intent = Intent(activity, LoginActivity::class.java)
                                         startActivity(intent)
                                     } else {
                                         Toast.makeText(context, "오류", Toast.LENGTH_SHORT).show()
