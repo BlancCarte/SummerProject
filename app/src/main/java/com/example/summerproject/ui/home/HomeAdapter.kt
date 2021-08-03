@@ -1,5 +1,6 @@
 package com.example.summerproject.ui.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +13,22 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerproject.R
 
-class HomeAdapter(function: () -> FlowerDiffCallback) : ListAdapter<Flower, HomeAdapter.FlowerViewHolder>(FlowerDiffCallback) {
+class HomeAdapter(private val onClick: (Flower) -> Unit) : ListAdapter<Flower, HomeAdapter.FlowerViewHolder>(FlowerDiffCallback) {
 
     /* ViewHolder for Flower, takes in the inflated view and the onClick behavior. */
-    class FlowerViewHolder(itemView: View) :
+    class FlowerViewHolder(itemView: View, val onClick: (Flower) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
         private val flowerTextView: TextView = itemView.findViewById(R.id.flower_text)
         private val flowerImageView: ImageView = itemView.findViewById(R.id.flower_image)
         private var currentFlower: Flower? = null
+
+        init {
+            itemView.setOnClickListener {
+                currentFlower?.let {
+                    onClick(it)
+                }
+            }
+        }
 
 
         /* Bind flower name and image. */
@@ -39,7 +48,7 @@ class HomeAdapter(function: () -> FlowerDiffCallback) : ListAdapter<Flower, Home
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowerViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_home_item, parent, false)
-        return FlowerViewHolder(view)
+        return FlowerViewHolder(view,onClick)
     }
 
     /* Gets current flower and uses it to bind view. */
@@ -70,6 +79,24 @@ class FlowersListFactory(private val context: HomeFragment) : ViewModelProvider.
         if (modelClass.isAssignableFrom(FlowersList::class.java)) {
             return FlowersList(
                 dataSource = DataSource.getDataSource(context.resources)
+            ) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class FlowerDetail(private val datasource: DataSource) : ViewModel() {
+    fun getFlowerForName(name: String) : Flower? {
+        return datasource.getFlowerForName(name)
+    }
+}
+class FlowerDetailFactory(private val context: Context) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(FlowerDetail::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return FlowerDetail(
+                datasource = DataSource.getDataSource(context.resources)
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

@@ -9,6 +9,14 @@ class DataSource(resources: Resources) {
     private val flowersLiveData = MutableLiveData(initialFlowerList)
 
 
+    fun getFlowerForName(name: String): Flower? {
+        flowersLiveData.value?.let { flowers ->
+            return flowers.firstOrNull{ it.name == name}
+        }
+        return null
+    }
+
+
     fun getFlowerList(): LiveData<List<Flower>> {
         return flowersLiveData
     }

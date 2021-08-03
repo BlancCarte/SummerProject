@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/activity_add_aticle.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/activity_home_detail.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/activity_main.xml" value="0.3605128205128205" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/activity_sign_up.xml" value="0.3605128205128205" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/alertdialog_edittext.xml" value="0.3605128205128205" />
+        <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/chat_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/fragment_dashboard.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/fragment_home.xml" value="0.3605128205128205" />
         <entry key="..\:/Users/beso1/AndroidStudioProjects/SummerProject/app/src/main/res/layout/fragment_home_item.xml" value="0.3605128205128205" />

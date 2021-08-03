@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_logout -> { //로그아웃 버튼 눌렀을 때
                 Toast.makeText(applicationContext, "로그아웃 실행", Toast.LENGTH_SHORT).show()
                 firebaseAuth!!.signOut();
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 return super.onOptionsItemSelected(item)
             }
