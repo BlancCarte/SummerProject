@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/BlancCarte/AndroidStudioProjects/SummerProject/app/src/main/res/layout/activity_home.xml" value="0.2667572463768116" />
+        <entry key="..\:/Users/BlancCarte/AndroidStudioProjects/SummerProject/app/src/main/res/layout/fragment_home.xml" value="0.2667572463768116" />
         <entry key="..\:/Users/BlancCarte/AndroidStudioProjects/SummerProject/app/src/main/res/layout/fragment_home_item.xml" value="0.3004273504273504" />
+        <entry key="..\:/Users/BlancCarte/AndroidStudioProjects/SummerProject/app/src/main/res/menu/toolbar_menu.xml" value="0.3004273504273504" />
       </map>
     </option>
   </component>
