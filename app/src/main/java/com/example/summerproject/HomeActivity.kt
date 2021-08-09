@@ -1,11 +1,13 @@
 package com.example.summerproject
 
 import android.content.Intent
+import android.graphics.Insets.add
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.OneShotPreDrawListener.add
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
@@ -13,8 +15,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
+import com.example.summerproject.ui.dashboard.DashBoardFragment
+import com.example.summerproject.ui.home.HomeFragment
 import com.example.summerproject.ui.mypage.ModifyFragment
 import com.example.summerproject.ui.mypage.ModifyPasswordFragment
+import com.example.summerproject.ui.mypage.MyPageFragment
+import com.example.summerproject.ui.notification.NotificationFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -40,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -82,5 +89,4 @@ class HomeActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_host, fragment).commit()
     }
-
 }
