@@ -1,104 +1,87 @@
 package com.example.summerproject.ui.home
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.summerproject.R
+import com.bumptech.glide.Glide
+import com.example.summerproject.databinding.FragmentHomeItemBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
-class HomeAdapter(private val onClick: (Flower) -> Unit) : ListAdapter<Flower, HomeAdapter.FlowerViewHolder>(FlowerDiffCallback) {
+data class ArticleModel(
+    val sellerId: String,
+    val title: String,
+    val createdAt: Long,
+    val price: String,
+    val imageUrl: String
+) {
+    // 파이어베이스에 클래스 단위로 올리려면 인자빈생성자 필요;
+    constructor() : this("", "", 0, "", "")
+}
 
-    /* ViewHolder for Flower, takes in the inflated view and the onClick behavior. */
-    class FlowerViewHolder(itemView: View, val onClick: (Flower) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
-        private val flowerTextView: TextView = itemView.findViewById(R.id.flower_text)
-        private val flowerImageView: ImageView = itemView.findViewById(R.id.flower_image)
-        private var currentFlower: Flower? = null
 
-        init {
-            itemView.setOnClickListener {
-                currentFlower?.let {
-                    onClick(it)
-                }
+
+
+class HomeAdapter(val onItemClicked: (ArticleModel) -> Unit) : ListAdapter<ArticleModel, HomeAdapter.ViewHolder>(diffUtil) {
+
+    inner class ViewHolder(private val binding: FragmentHomeItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        @SuppressLint("SimpleDateFormat")
+        fun bind(articleModel: ArticleModel) {
+
+            // Long 형식에서 날짜로 바꾸기.
+            val format = SimpleDateFormat("MM월 dd일")
+            val date = Date(articleModel.createdAt) // Long -> Date
+
+            binding.titleTextView.text = articleModel.title
+            binding.dateTextView.text = format.format(date).toString()
+            binding.priceTextView.text = articleModel.price
+
+            // glide로 이미지 불러오기;
+            if (articleModel.imageUrl.isNotEmpty()) {
+                Glide.with(binding.thumbnailImageView)
+                    .load(articleModel.imageUrl)
+                    .into(binding.thumbnailImageView)
             }
-        }
 
-
-        /* Bind flower name and image. */
-        fun bind(flower: Flower) {
-            currentFlower = flower
-
-            flowerTextView.text = flower.name
-            if (flower.image != null) {
-                flowerImageView.setImageResource(flower.image)
-            } else {
-                flowerImageView.setImageResource(R.drawable.rose)
+            binding.root.setOnClickListener {
+                onItemClicked(articleModel)
             }
+
         }
     }
 
-    /* Creates and inflates view and return FlowerViewHolder. */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowerViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_home_item, parent, false)
-        return FlowerViewHolder(view,onClick)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            FragmentHomeItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
-    /* Gets current flower and uses it to bind view. */
-    override fun onBindViewHolder(holder: FlowerViewHolder, position: Int) {
-        val flower = getItem(position)
-        holder.bind(flower)
-
-    }
-}
-
-object FlowerDiffCallback : DiffUtil.ItemCallback<Flower>() {
-    override fun areItemsTheSame(oldItem: Flower, newItem: Flower): Boolean {
-        return oldItem == newItem
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(currentList[position])
     }
 
-    override fun areContentsTheSame(oldItem: Flower, newItem: Flower): Boolean {
-        return oldItem.name == newItem.name
-    }
-}
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<ArticleModel>() {
+            override fun areItemsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
+                // 현재 노출하고 있는 아이템과 새로운 아이템이 같은지 비교;
+                return oldItem.createdAt == newItem.createdAt
+            }
 
-class FlowersList(val dataSource: DataSource) : ViewModel() {
-    val flowersLiveData = dataSource.getFlowerList()
-}
+            override fun areContentsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
+                // equals 비교;
+                return oldItem == newItem
 
-class FlowersListFactory(private val context: HomeFragment) : ViewModelProvider.Factory {
+            }
 
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(FlowersList::class.java)) {
-            return FlowersList(
-                dataSource = DataSource.getDataSource(context.resources)
-            ) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
-
-class FlowerDetail(private val datasource: DataSource) : ViewModel() {
-    fun getFlowerForName(name: String) : Flower? {
-        return datasource.getFlowerForName(name)
-    }
-}
-class FlowerDetailFactory(private val context: Context) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(FlowerDetail::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return FlowerDetail(
-                datasource = DataSource.getDataSource(context.resources)
-            ) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

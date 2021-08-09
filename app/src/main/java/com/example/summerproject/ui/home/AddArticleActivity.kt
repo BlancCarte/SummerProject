@@ -11,8 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.example.summerproject.DBKey.Companion.DB_ARTICLES
 import com.example.summerproject.R
-import com.example.summerproject.ui.home.AddArticleActivity.DBKey.Companion.DB_ARTICLES
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -22,29 +22,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 
 
-data class ArticleModel(
-    val sellerId: String,
-    val title: String,
-    val createdAt: Long,
-    val price: String,
-    val imageUrl: String
-) {
-    // 파이어베이스에 클래스 단위로 올리려면 인자빈생성자 필요;
-    constructor() : this("", "", 0, "", "")
-}
-
-
 
 class AddArticleActivity : AppCompatActivity() {
-    class DBKey {
-        companion object{
-            const val DB_ARTICLES = "Articles"
-            const val DB_USERS = "Users"
-            const val CHILD_CHAT = "chat"
-            const val DB_CHAT = "Chats"
-        }
-    }
-
     private var selectedUri: Uri? = null
 
     private val auth: FirebaseAuth by lazy {
