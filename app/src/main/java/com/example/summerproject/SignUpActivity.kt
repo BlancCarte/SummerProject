@@ -173,12 +173,6 @@ class SignUpActivity : AppCompatActivity() {
             var phoneNumber: String? = null
         )
 
-        data class ChatDTO(
-            var nickname: String? = null,
-            var contents: String? = null,
-            var time: String? = null
-        )
-
         binding.btnRegister.setOnClickListener {
 
             var userDTO = UserDTO()
@@ -189,17 +183,12 @@ class SignUpActivity : AppCompatActivity() {
             var passwordconfrim = binding.passwordConfirm.text.toString()
             userDTO.phoneNumber = binding.phoneNumber.text.toString()
 
-            var chatDTO = ChatDTO()
-            chatDTO.nickname = binding.nickname.text.toString()
-            chatDTO.contents = ""
-            chatDTO.time = ""
-
             if(userDTO.email!!.isNotEmpty() && userDTO.nickname!!.isNotEmpty() &&userDTO.password!!.isNotEmpty()&& passwordconfrim!!.isNotEmpty()&& userDTO.phoneNumber!!.isNotEmpty() ){
                 firebaseAuth!!.createUserWithEmailAndPassword(userDTO.email!!, userDTO.password!!)
                     .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-                            firebaseFirestore?.collection("userinfo")?.document(userDTO.email!!)?.set(userDTO)
-                            firebaseFirestore?.collection("Chat")?.document(userDTO.email!!)?.set(chatDTO)
+                            firebaseFirestore?.collection("userinfo")
+                                ?.document(userDTO.email!!)?.set(userDTO)
                             val user = firebaseAuth!!.currentUser
                             user!!.sendEmailVerification()
                                 .addOnCompleteListener { task ->

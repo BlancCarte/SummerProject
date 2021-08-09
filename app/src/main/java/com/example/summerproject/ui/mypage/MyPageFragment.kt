@@ -49,16 +49,6 @@ class MyPageFragment : Fragment() {
     }
 
     override fun onResume() {
-
-        val currentemail = firebaseAuth!!.currentUser?.email.toString()
-
-        firebaseFirestore!!.collection("userinfo").document(currentemail).get()
-            .addOnSuccessListener { documentSnapshot ->
-                val nickname = documentSnapshot.get("nickname").toString()
-                mBinding!!.name.setText(nickname)
-            }
-
-
         mBinding!!.profileModify.setOnClickListener {
             val currentemail = firebaseAuth!!.currentUser?.email.toString()
 

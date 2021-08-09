@@ -36,7 +36,8 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/profile_modify"
         app:layout_constraintEnd_toEndOf="@+id/profile_modify"
-        app:layout_constraintTop_toBottomOf="@+id/PhotoImg" />
+        app:layout_constraintTop_toBottomOf="@+id/PhotoImg"
+        android:text="김규호"/>
 
     <TextView
         android:id="@+id/price"

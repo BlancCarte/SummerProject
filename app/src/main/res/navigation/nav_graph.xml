@@ -7,21 +7,31 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.summerproject.ui.home.HomeFragment"
-        android:label="홈"
-        tools:layout="@layout/fragment_home" />
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myPageFragment"
         android:name="com.example.summerproject.ui.mypage.MyPageFragment"
-        android:label="마이페이지"
+        android:label="fragment_mypage"
         tools:layout="@layout/fragment_mypage" />
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.summerproject.ui.notification.NotificationFragment"
-        android:label="알림"
+        android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.summerproject.ui.dashboard.DashBoardFragment"
-        android:label="채팅"
-        tools:layout="@layout/fragment_dashborad" />
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>
