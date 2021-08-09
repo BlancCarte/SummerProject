@@ -67,7 +67,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         initDB()
 
-        initArticleAdapter(view)
+        initArticleAdapter()
 
         initArticleRecyclerView()
 
@@ -104,9 +104,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding!!.recyclerView.adapter = articleAdapter
     }
 
-    private fun initArticleAdapter(view: View) {
-        articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
-        })
+    private fun initArticleAdapter() {
+        articleAdapter = ArticleAdapter {articleModel ->
+                Intent(activity, DetailActivity()::class.java).apply {
+                    putExtra("title", articleModel.title)
+                    putExtra("imageurl", articleModel.imageUrl)
+                    putExtra("price", articleModel.price)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run{context?.startActivity(this)}
+        }
     }
 
     private fun initDB() {
@@ -133,5 +139,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             add(ArticleModel("0", "BBB", 2000000, "10000원", ""))
         })
     }
+
+
+
 
 }
