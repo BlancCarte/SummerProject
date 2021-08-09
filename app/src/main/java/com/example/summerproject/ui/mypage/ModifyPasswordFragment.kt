@@ -103,7 +103,6 @@ class ModifyPasswordFragment : Fragment() {
 					mBinding!!.modifyPasswordConfirmCheckText.setText("비밀번호가 일치하지 않습니다.")
 					mBinding!!.btnModify.isEnabled = false
 				}
-0
 			}
 			override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 			override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

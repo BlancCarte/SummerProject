@@ -5,25 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.summerproject.databinding.FragmentDashboardBinding
+import com.example.summerproject.databinding.FragmentDashboradBinding
 
 class DashBoardFragment : Fragment() {
 
-    private var mBinding : FragmentDashboardBinding? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentDashboardBinding.inflate(inflater,container,false)
+	private var mBinding : FragmentDashboradBinding? = null
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View? {
+		val binding = FragmentDashboradBinding.inflate(inflater,container,false)
 
-        mBinding = binding
+		mBinding = binding
 
-        return mBinding?.root
-    }
+		return mBinding?.root
+	}
 
-    override fun onDestroyView() {
-        mBinding = null
-        super.onDestroyView()
-    }
+	override fun onDestroyView() {
+		mBinding = null
+		super.onDestroyView()
+	}
 }
