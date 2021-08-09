@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import com.example.summerproject.databinding.ActivityMainBinding
+import com.example.summerproject.ui.dashboard.DashboardFragment
 import com.example.summerproject.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,6 +22,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_host, DashboardFragment())
+            .commit()
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -88,5 +93,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun replaceFragment(bundle: Bundle) {
+        val destination = DashboardFragment()
+        destination.arguments = bundle      // 닉네임을 받아옴
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_host, destination)
+            .commit()
     }
 }
