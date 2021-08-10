@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.summerproject.R
 import com.example.summerproject.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
@@ -20,7 +21,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.example.summerproject.DBKey.Companion.DB_ARTICLES
 import com.example.summerproject.DBKey.Companion.DB_USERS
-
+import androidx.recyclerview.widget.DividerItemDecoration
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -129,6 +130,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
+
+        val recyclerView = requireView().findViewById(R.id.recycler_view) as RecyclerView
+        recyclerView.addItemDecoration(DividerItemDecoration(requireView().context, 1))
 
         articleAdapter.notifyDataSetChanged() // view 를 다시 그림;
     }

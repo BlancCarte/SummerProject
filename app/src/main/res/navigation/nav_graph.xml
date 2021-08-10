@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.summerproject.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="중고거래 장터"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_dashboardFragment"
@@ -22,12 +22,12 @@
     <fragment
         android:id="@+id/myPageFragment"
         android:name="com.example.summerproject.ui.mypage.MyPageFragment"
-        android:label="fragment_mypage"
+        android:label="내정보"
         tools:layout="@layout/fragment_mypage" />
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.summerproject.ui.notification.NotificationFragment"
-        android:label="fragment_notification"
+        android:label="알림"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/dashboardFragment"
