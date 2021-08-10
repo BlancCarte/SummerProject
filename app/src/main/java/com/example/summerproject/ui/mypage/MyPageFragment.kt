@@ -49,6 +49,15 @@ class MyPageFragment : Fragment() {
     }
 
     override fun onResume() {
+        val currentemail = firebaseAuth!!.currentUser?.email.toString()
+
+        firebaseFirestore!!.collection("userinfo").document(currentemail).get()
+            .addOnSuccessListener { documentSnapshot ->
+                val nickname = documentSnapshot.get("nickname").toString()
+                mBinding!!.nickname.setText(nickname)
+                mBinding!!.email.setText(currentemail)
+            }
+
         mBinding!!.profileModify.setOnClickListener {
             val currentemail = firebaseAuth!!.currentUser?.email.toString()
 
@@ -122,7 +131,8 @@ class MyPageFragment : Fragment() {
                         setView(builderItem.root)
                         setPositiveButton("OK") { dialogInterface: DialogInterface, i: Int ->
                             if (editText.toString() == password) {
-                                firebaseFirestore!!.collection("userinfo").document(currentemail).delete()
+                                firebaseFirestore!!.collection("userinfo").document(currentemail)
+                                    .delete()
                                 user.delete().addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(context, "탈퇴 완료", Toast.LENGTH_SHORT).show()

@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SummerProject">
         <activity
-            android:name=".ui.home.DetailActivity2"
-            android:exported="true" />
-        <activity
             android:name=".ui.home.DetailActivity"
             android:exported="true" />
         <activity

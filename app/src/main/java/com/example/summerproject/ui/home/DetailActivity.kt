@@ -13,6 +13,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitle("상세정보")
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var title = intent.getSerializableExtra("title")
@@ -24,4 +25,6 @@ class DetailActivity : AppCompatActivity() {
             .load(imageurl)
             .into(binding.titleimageView)
     }
+
+
 }
