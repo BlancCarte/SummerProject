@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:clickable="true">
+
+        <View
+            android:id="@+id/modify_subView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modify_email" />
+
+        <ImageView
+            android:id="@+id/modify_PhotoImg"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/modify_email"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/modify_emailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:textStyle="bold"
+            android:text="이메일"
+            app:layout_constraintBottom_toTopOf="@+id/modify_email"
+            app:layout_constraintStart_toStartOf="@+id/modify_email"
+            tools:ignore="MissingConstraints"
+            />
+
+        <TextView
+            android:id="@+id/modify_email"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:hint="Email"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/modify_subView"
+            android:background="@drawable/button_round"/>
+
+        <TextView
+            android:id="@+id/modify_emailTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            app:layout_constraintStart_toStartOf="@+id/modify_email"
+            app:layout_constraintTop_toBottomOf="@+id/modify_email"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:id="@+id/modify_nicknameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:textStyle="bold"
+            android:text="별명 변경"
+            app:layout_constraintBottom_toTopOf="@+id/modify_nickname"
+            app:layout_constraintStart_toStartOf="@+id/modify_nickname"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/modify_nickname"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:padding="10dp"
+            android:hint="한글, 영어, 숫자 2~10자"
+            android:textSize="12sp"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modify_email"
+            android:background="@drawable/button_round"/>
+
+        <TextView
+            android:id="@+id/modify_nicknameTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            app:layout_constraintStart_toStartOf="@+id/modify_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/modify_nickname"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/modify_phoneNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:textStyle="bold"
+            android:text="전화번호 변경"
+            app:layout_constraintBottom_toTopOf="@+id/modify_phoneNumber"
+            app:layout_constraintStart_toStartOf="@+id/modify_phoneNumber"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/modify_phoneNumber"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:padding="10dp"
+            android:hint="010xxxxyyyy"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modify_nickname"
+            android:background="@drawable/button_round" />
+
+        <TextView
+            android:id="@+id/modify_phoneNumberTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            app:layout_constraintStart_toStartOf="@+id/modify_phoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/modify_phoneNumber"
+            android:textSize="10dp"/>
+
+        <Button
+            android:backgroundTint="#FF9614"
+            android:id="@+id/btn_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="수정"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modify_phoneNumber"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
