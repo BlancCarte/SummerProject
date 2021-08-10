@@ -15,6 +15,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setTitle("상세정보")
+
         var title = intent.getSerializableExtra("title")
         var imageurl = intent.getSerializableExtra("imageurl")
         var price = intent.getSerializableExtra("price")

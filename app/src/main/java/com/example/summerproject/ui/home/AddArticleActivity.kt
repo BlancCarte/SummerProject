@@ -65,6 +65,7 @@ class AddArticleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_article)
+        setTitle("물품 등록")
 
         // 이미지 추가 버튼;
         initImageAddButton()
