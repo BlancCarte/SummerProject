@@ -1,33 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.DetailActivity"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
-        android:textAlignment="center"
-        android:textAppearance="?attr/textAppearanceHeadline3"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:textSize="20dp"
         android:textColor="@color/black"
-        android:hint="Email"/>
+        android:textStyle="bold"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/titleimageView"
         android:layout_width="250dp"
         android:layout_height="250dp"
+        android:layout_marginTop="16dp"
         android:layout_gravity="center"
-       />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        android:background="@drawable/button_round"/>
+
+    <TextView
+        android:id="@+id/sellerNickname"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text="판매자 : "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleimageView"/>
+
+    <TextView
+        android:id="@+id/sellerNicknameTextView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/sellerNickname"
+        app:layout_constraintTop_toTopOf="@+id/sellerNickname"
+        app:layout_constraintBottom_toBottomOf="@+id/sellerNickname"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text="가격 : "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/priceTextView"
+        app:layout_constraintTop_toBottomOf="@+id/sellerNickname"/>
 
     <TextView
         android:id="@+id/priceTextView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/price"
+        app:layout_constraintTop_toBottomOf="@+id/sellerNicknameTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/price"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="2dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:text="상세설명"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/contentTextView"
+        app:layout_constraintTop_toBottomOf="@+id/priceTextView"/>
+
+    <TextView
+        android:id="@+id/contentTextView"
         android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="top"
+        android:singleLine="false"
+        android:inputType="textMultiLine"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:text="가나다라마바사"
+        android:scrollbars = "vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        android:background="@drawable/button_round"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-       />
-</LinearLayout>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF9614"
+        android:text="구매"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentTextView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
