@@ -27,10 +27,11 @@ data class ArticleModel(
     val title: String,
     val createdAt: Long,
     val price: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val content: String
 ) {
     // 파이어베이스에 클래스 단위로 올리려면 인자빈생성자 필요;
-    constructor() : this("", "", 0, "", "")
+    constructor() : this("", "", 0, "", "", "")
 }
 
 
@@ -83,13 +84,14 @@ class AddArticleActivity : AppCompatActivity() {
             val title = findViewById<EditText>(R.id.titleEditText).text.toString()
             val price = findViewById<EditText>(R.id.priceEditText).text.toString()
             val sellerEmail = auth.currentUser?.email.orEmpty()
+            val content = findViewById<EditText>(R.id.contentEditText).text.toString()
 
             // 중간에 이미지가 있으면 업로드 과정을 추가
             if (selectedUri != null) {
                 val photoUri = selectedUri ?: return@setOnClickListener
                 uploadPhoto(photoUri,
                     successHandler = { url -> // 다운로드 url 을 받아서 처리;
-                        uploadArticle(sellerEmail, title, price, url)
+                        uploadArticle(sellerEmail, title, price, url, content)
                     },
                     errorHandler = {
                         Toast.makeText(this, "사진 업로드 실패.", Toast.LENGTH_SHORT)
@@ -98,7 +100,7 @@ class AddArticleActivity : AppCompatActivity() {
                     })
             } else {
                 // 이미지가 없는 경우 빈 문자열
-                uploadArticle(sellerEmail, title, price, "")
+                uploadArticle(sellerEmail, title, price, "", content)
                 hideProgress()
             }
 
@@ -152,8 +154,8 @@ class AddArticleActivity : AppCompatActivity() {
             }
     }
 
-    private fun uploadArticle(sellerEmail: String, title: String, price: String, imageUrl: String) {
-        val model = ArticleModel(sellerEmail, title, System.currentTimeMillis(), "${price}원", imageUrl)
+    private fun uploadArticle(sellerEmail: String, title: String, price: String, imageUrl: String, content: String) {
+        val model = ArticleModel(sellerEmail, title, System.currentTimeMillis(), "${price}원", imageUrl, content)
 
         // 데이터베이스에 업로드;
         articleDB.push().setValue(model)

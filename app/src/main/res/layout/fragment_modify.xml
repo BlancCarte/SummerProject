@@ -16,15 +16,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/modify_email" />
 
-        <ImageView
-            android:id="@+id/modify_PhotoImg"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginBottom="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/modify_email"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+    <ImageView
+        android:id="@+id/photoImg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/button_round"/>
 
         <TextView
             android:id="@+id/modify_emailText"
@@ -131,17 +132,16 @@
             app:layout_constraintTop_toBottomOf="@+id/modify_phoneNumber"
             android:textSize="10dp"/>
 
-        <Button
-            android:backgroundTint="#FF9614"
-            android:id="@+id/btn_modify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="수정"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/modify_phoneNumber"
-            />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/photoImg"
+        app:layout_constraintEnd_toEndOf="@+id/photoImg"
+        app:layout_constraintStart_toStartOf="@+id/photoImg"
+        app:layout_constraintTop_toTopOf="@+id/photoImg"
+        tools:visibility="visible" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

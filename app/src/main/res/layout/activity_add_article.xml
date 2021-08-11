@@ -41,7 +41,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:hint="제목 : "
+            android:paddingTop="3dp"
+            android:hint="제목"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageAddButton"/>
@@ -53,7 +54,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="가격(￦) : "
+            android:hint="가격(￦)"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +67,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:text="상품 설명"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/priceEditText"/>
 

@@ -39,6 +39,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             articleList.add(articleModel) // 리스트에 새로운 항목을 더해서;
             articleAdapter.submitList(articleList) // 어뎁터 리스트에 등록;
+
+            val mLayoutManager = LinearLayoutManager(activity)
+            mLayoutManager.reverseLayout = true
+            mLayoutManager.stackFromEnd = true
+            binding?.recyclerView?.setLayoutManager(mLayoutManager)
         }
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -60,7 +65,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("sslee", "onViewCreated")
 
         val fragmentHomeBinding = FragmentHomeBinding.bind(view)
         binding = fragmentHomeBinding
@@ -108,12 +112,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun initArticleAdapter() {
         articleAdapter = ArticleAdapter {articleModel ->
-                Intent(activity, DetailActivity()::class.java).apply {
-                    putExtra("title", articleModel.title)
-                    putExtra("imageurl", articleModel.imageUrl)
-                    putExtra("price", articleModel.price)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run{context?.startActivity(this)}
+            Intent(activity, DetailActivity()::class.java).apply {
+                putExtra("title", articleModel.title)
+                putExtra("imageurl", articleModel.imageUrl)
+                putExtra("price", articleModel.price)
+                putExtra("content", articleModel.content)
+                putExtra("sellerEmail", articleModel.sellerEmail)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }.run{context?.startActivity(this)}
         }
     }
 
@@ -131,7 +137,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-
         val recyclerView = requireView().findViewById(R.id.recycler_view) as RecyclerView
         recyclerView.addItemDecoration(DividerItemDecoration(requireView().context, 1))
 
@@ -140,8 +145,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setArticleSample() {
         articleAdapter.submitList(mutableListOf<ArticleModel>().apply {
-            add(ArticleModel("0", "AAA", 1000000, "5000원", ""))
-            add(ArticleModel("0", "BBB", 2000000, "10000원", ""))
+            add(ArticleModel("0", "AAA", 1000000, "5000원", "", ""))
+            add(ArticleModel("0", "BBB", 2000000, "10000원", "", ""))
         })
     }
 

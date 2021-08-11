@@ -58,6 +58,7 @@ class MyPageFragment : Fragment() {
                 mBinding!!.email.setText(currentemail)
             }
 
+
         mBinding!!.profileModify.setOnClickListener {
             val currentemail = firebaseAuth!!.currentUser?.email.toString()
 
