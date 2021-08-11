@@ -11,17 +11,22 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitle("상세정보")
         binding = ActivityHomeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var title = intent.getSerializableExtra("title")
-        var imageUrl = intent.getSerializableExtra("imageUrl")
+        var imageurl = intent.getSerializableExtra("imageurl")
         var price = intent.getSerializableExtra("price")
-
+        var content = intent.getSerializableExtra("content")
+        var sellerEmail = intent.getSerializableExtra("sellerEmail")
         binding.titleTextView.text = title.toString()
+        binding.sellerNicknameTextView.text = sellerEmail.toString()
         binding.priceTextView.text = price.toString()
-
+        binding.contentTextView.text = content.toString()
         Glide.with(binding.titleimageView)
-            .load(imageUrl)
+            .load(imageurl)
             .into(binding.titleimageView)
     }
+
+
 }

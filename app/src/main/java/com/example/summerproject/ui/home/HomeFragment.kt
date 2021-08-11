@@ -1,18 +1,20 @@
 package com.example.summerproject.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.summerproject.DBKey.Companion.DB_ARTICLES
 import com.example.summerproject.DBKey.Companion.DB_USERS
 import com.example.summerproject.R
 import com.example.summerproject.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,29 +22,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-const val TITLE = "title"
-const val IMAGEURL = "imageurl"
-const val PRICE = "price"
-private var firebaseAuth: FirebaseAuth? = null
-
-data class ChatListItem(
-    val buyerId: String,
-    val sellerId: String,
-    val itemTitle: String,
-    val key: Long
-){
-    constructor():this("","","",0)
-}
-
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
+
     private lateinit var articleDB: DatabaseReference
     private lateinit var userDB: DatabaseReference
     private lateinit var articleAdapter: HomeAdapter
 
     private val articleList = mutableListOf<ArticleModel>()
-
-    private var mBinding: FragmentHomeBinding? = null
 
     private val listener = object : ChildEventListener {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -63,51 +50,72 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        mBinding = binding
-        return mBinding?.root
+    private val auth: FirebaseAuth by lazy {
+        Firebase.auth
     }
+
+    private var binding: FragmentHomeBinding? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
+
+        val fragmentHomeBinding = FragmentHomeBinding.bind(view)
+        binding = fragmentHomeBinding
+
         articleList.clear() //리스트 초기화;
 
         initDB()
 
-        initArticleAdapter(view)
+        initArticleAdapter()
 
         initArticleRecyclerView()
 
+        initFloatingButton(view)
+
         // 데이터 가져오기;
         initListener()
-
-        initFloatingButton(view)
     }
+
     private fun initListener() {
         articleDB.addChildEventListener(listener)
+    }
+
+    private fun initFloatingButton(view: View) {
+        // 플로팅 버튼;
+        binding!!.addFloatingButton.setOnClickListener {
+            context?.let {
+                if (auth.currentUser != null) {
+                    val intent = Intent(it, AddArticleActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     private fun initArticleRecyclerView() {
         // activity 일 때는 그냥 this 로 넘겼지만 (그자체가 컨텍스트라서) 그러나
         // 프레그 먼트의 경우에는 아래처럼. context
-        mBinding?:return
+        binding?:return
 
-        mBinding!!.recyclerView.layoutManager = LinearLayoutManager(context)
-        mBinding!!.recyclerView.adapter = articleAdapter
+        binding!!.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding!!.recyclerView.adapter = articleAdapter
+        val mLayoutManager = LinearLayoutManager(activity)
+        mLayoutManager.reverseLayout = true
+        mLayoutManager.stackFromEnd = true
+        binding?.recyclerView?.layoutManager = mLayoutManager
     }
 
-    private fun initArticleAdapter(view: View) {
+    private fun initArticleAdapter() {
         articleAdapter = HomeAdapter {articleModel ->
             Intent(activity, DetailActivity()::class.java).apply {
                 putExtra("title", articleModel.title)
-                putExtra("imageUrl", articleModel.imageUrl)
+                putExtra("imageurl", articleModel.imageUrl)
                 putExtra("price", articleModel.price)
+                putExtra("content", articleModel.content)
+                putExtra("sellerEmail", articleModel.sellerEmail)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }.run{context?.startActivity(this)}
         }
@@ -118,26 +126,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         userDB = Firebase.database.reference.child(DB_USERS)
     }
 
-    private fun initFloatingButton(view: View) {
-        // 플로팅 버튼;
-        mBinding!!.addFloatingButton.setOnClickListener {
-            context?.let {
-                if (firebaseAuth!!.currentUser != null) {
-                    val intent = Intent(it, AddArticleActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
-                }
-            }
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        articleDB.removeEventListener(listener)
     }
 
-    override fun onDestroyView() {
-        mBinding = null
-        super.onDestroyView()
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        val recyclerView = requireView().findViewById(R.id.recycler_view) as RecyclerView
+        recyclerView.addItemDecoration(DividerItemDecoration(requireView().context, 1))
+
+        articleAdapter.notifyDataSetChanged() // view 를 다시 그림;
     }
+
+    private fun setArticleSample() {
+        articleAdapter.submitList(mutableListOf<ArticleModel>().apply {
+            add(ArticleModel("0", "AAA", 1000000, "5000원", "", ""))
+            add(ArticleModel("0", "BBB", 2000000, "10000원", "", ""))
+        })
+    }
+
+
+
+
 }
-
-
-
-

@@ -7,27 +7,26 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.summerproject.databinding.FragmentHomeItemBinding
+import com.example.summerproject.databinding.HomeItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 data class ArticleModel(
-    val sellerId: String,
+    val sellerEmail: String,
     val title: String,
     val createdAt: Long,
     val price: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val content: String
 ) {
     // 파이어베이스에 클래스 단위로 올리려면 인자빈생성자 필요;
-    constructor() : this("", "", 0, "", "")
+    constructor() : this("", "", 0, "", "", "")
 }
 
+class HomeAdapter(val onItemClicked: (ArticleModel) -> Unit) :
+    ListAdapter<ArticleModel, HomeAdapter.ViewHolder>(diffUtil) {
 
-
-
-class HomeAdapter(val onItemClicked: (ArticleModel) -> Unit) : ListAdapter<ArticleModel, HomeAdapter.ViewHolder>(diffUtil) {
-
-    inner class ViewHolder(private val binding: FragmentHomeItemBinding) :
+    inner class ViewHolder(private val binding: HomeItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SimpleDateFormat")
@@ -51,13 +50,12 @@ class HomeAdapter(val onItemClicked: (ArticleModel) -> Unit) : ListAdapter<Artic
             binding.root.setOnClickListener {
                 onItemClicked(articleModel)
             }
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            FragmentHomeItemBinding.inflate(
+            HomeItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
