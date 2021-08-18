@@ -20,21 +20,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.example.summerproject.DBKey.Companion.DB_ARTICLES
+import com.google.firebase.firestore.FirebaseFirestore
 
 
-data class ArticleModel(
-    val sellerEmail: String,
-    val title: String,
-    val createdAt: Long,
-    val price: String,
-    val imageUrl: String,
-    val content: String
-) {
-    // 파이어베이스에 클래스 단위로 올리려면 인자빈생성자 필요;
-    constructor() : this("", "", 0, "", "", "")
-}
 
-
+private var firebaseAuth: FirebaseAuth? = null
+private var firebaseFirestore: FirebaseFirestore? = null
 
 class AddArticleActivity : AppCompatActivity() {
     private var selectedUri: Uri? = null
@@ -64,6 +55,8 @@ class AddArticleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
         setContentView(R.layout.activity_add_article)
         setTitle("물품 등록")
 
@@ -79,35 +72,39 @@ class AddArticleActivity : AppCompatActivity() {
         findViewById<Button>(R.id.submitButton).setOnClickListener {
             showProgress()
             // 입력된 값 가져오기;
+            val currentemail = firebaseAuth!!.currentUser?.email.toString()
+            firebaseFirestore!!.collection("userinfo").document(currentemail).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    val nickname = documentSnapshot.get("nickname").toString()
+                    var title = findViewById<EditText>(R.id.titleEditText).text.toString()
+                    var price = findViewById<EditText>(R.id.priceEditText).text.toString()
+                    var sellerEmail = auth.currentUser?.email.orEmpty()
+                    var content = findViewById<EditText>(R.id.contentEditText).text.toString()
+                    var sellerId =auth.currentUser?.uid.toString()
 
-            var title = findViewById<EditText>(R.id.titleEditText).text.toString()
-            var price = findViewById<EditText>(R.id.priceEditText).text.toString()
-            var sellerEmail = auth.currentUser?.email.orEmpty()
-            var content = findViewById<EditText>(R.id.contentEditText).text.toString()
-
-            if(title.isEmpty() || price.isEmpty() || content.isEmpty()|| selectedUri==null)
-                Toast.makeText(this, "입력란에 공백이 있습니다.", Toast.LENGTH_SHORT).show()
-            else {
-                // 중간에 이미지가 있으면 업로드 과정을 추가
-                if (selectedUri != null) {
-                    val photoUri = selectedUri ?: return@setOnClickListener
-                    uploadPhoto(photoUri,
-                        successHandler = { url -> // 다운로드 url 을 받아서 처리;
-                            uploadArticle(sellerEmail, title, price, url, content)
-                        },
-                        errorHandler = {
-                            Toast.makeText(this, "사진 업로드 실패.", Toast.LENGTH_SHORT)
-                                .show()
+                    if (title.isEmpty() || price.isEmpty() || content.isEmpty() || selectedUri == null)
+                        Toast.makeText(this, "입력란에 공백이 있습니다.", Toast.LENGTH_SHORT).show()
+                    else {
+                        // 중간에 이미지가 있으면 업로드 과정을 추가
+                        if (selectedUri != null) {
+                            val photoUri = selectedUri ?: return@addOnSuccessListener
+                            uploadPhoto(photoUri,
+                                successHandler = { url -> // 다운로드 url 을 받아서 처리;
+                                    uploadArticle(sellerEmail, title, price, url, content, nickname, sellerId)
+                                },
+                                errorHandler = {
+                                    Toast.makeText(this, "사진 업로드 실패.", Toast.LENGTH_SHORT)
+                                        .show()
+                                    hideProgress()
+                                })
+                        } else {
+                            // 이미지가 없는 경우 빈 문자열
+                            uploadArticle(sellerEmail, title, price, "", content, nickname, sellerId)
                             hideProgress()
-                        })
-                } else {
-                    // 이미지가 없는 경우 빈 문자열
-                    uploadArticle(sellerEmail, title, price, "", content)
-                    hideProgress()
+                        }
+                    }
+                    // 모델 생성;
                 }
-            }
-            // 모델 생성;
-
         }
     }
 
@@ -156,11 +153,14 @@ class AddArticleActivity : AppCompatActivity() {
             }
     }
 
-    private fun uploadArticle(sellerEmail: String, title: String, price: String, imageUrl: String, content: String) {
-        val model = ArticleModel(sellerEmail, title, System.currentTimeMillis(), "${price}원", imageUrl, content)
+    private fun uploadArticle(sellerEmail: String, title: String, price: String, imageUrl: String, content: String, nickname: String, sellerId: String) {
+
+        val model = ArticleModel(sellerEmail, title, System.currentTimeMillis(), "${price}원", imageUrl, content, nickname, sellerId)
+
+        val key =nickname.plus(",").plus(title)
 
         // 데이터베이스에 업로드;
-        articleDB.push().setValue(model)
+        Firebase.database.reference.child("Articles").child(key).setValue(model)
 
         hideProgress()
         finish()

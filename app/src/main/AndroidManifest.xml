@@ -19,6 +19,9 @@
             android:name=".ui.home.AddArticleActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.chatdetail.ChatRoomActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.SummerProject.NoActionBar" />
         <activity
