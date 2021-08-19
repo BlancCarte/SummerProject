@@ -12,13 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SummerProject">
-
+        <activity
+            android:name=".ui.chatdetail.ChatRoomActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SummerProject.NoActionBar" />
         <activity
             android:name=".ui.home.DetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.SummerProject.NoActionBar" />
         <activity
             android:name=".ui.home.AddArticleActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.SummerProject.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.SummerProject.NoActionBar" />

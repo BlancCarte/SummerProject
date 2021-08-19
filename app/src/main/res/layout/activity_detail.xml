@@ -29,6 +29,17 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
         android:background="@drawable/button_round"/>
 
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FF9614"
+        android:text="삭제"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/sellerNickname"
         android:layout_width="wrap_content"

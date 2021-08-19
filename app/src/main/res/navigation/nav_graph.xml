@@ -10,8 +10,8 @@
         android:label="중고거래 장터"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
         <action
             android:id="@+id/action_homeFragment_to_myPageFragment"
             app:destination="@id/myPageFragment" />
@@ -30,8 +30,8 @@
         android:label="알림"
         tools:layout="@layout/fragment_notification" />
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.summerproject.ui.dashboard.DashBoardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/chatFragment"
+        android:name="com.example.summerproject.ui.chatlist.ChatListFragment"
+        android:label="fragment_chatlist"
+        tools:layout="@layout/fragment_chatlist" />
 </navigation>

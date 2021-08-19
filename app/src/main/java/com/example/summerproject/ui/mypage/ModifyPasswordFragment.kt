@@ -25,14 +25,18 @@ private var firebaseFirestore: FirebaseFirestore? = null
 
 
 class ModifyPasswordFragment : Fragment() {
-
     private var mainActivity: HomeActivity? = null
     private var mBinding: FragmentModifyPasswordBinding? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as HomeActivity
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
     }
 
     override fun onCreateView(
@@ -44,15 +48,7 @@ class ModifyPasswordFragment : Fragment() {
         mBinding = binding
         return mBinding?.root
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
-    }
-
     override fun onResume() {
-
         //비밀번호 -> 비밀번호 확인 검사
         mBinding!!.modifyPassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -79,9 +75,7 @@ class ModifyPasswordFragment : Fragment() {
                 }
 
             }
-
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
@@ -108,31 +102,20 @@ class ModifyPasswordFragment : Fragment() {
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
         })
-
-        data class UserDTO(
-            var password: String? = null,
-            var nickname: String? = null,
-            var phoneNumber: String? = null
-        )
 
         mBinding!!.btnModify.setOnClickListener {
             var userDTO = UserDTO()
             userDTO.password = mBinding!!.modifyPassword.text.toString()
             var passwordconfrim = mBinding!!.modifyPasswordConfirm.text.toString()
             var currentemail = firebaseAuth!!.currentUser?.email.toString()
-
             var ref = Firebase.firestore!!.collection("userinfo").document(currentemail)
 
             firebaseFirestore!!.collection("userinfo").document(currentemail).get()
                 .addOnSuccessListener { documentSnapshot ->
                     val password = documentSnapshot.get("password").toString()
-
                     var map = mutableMapOf<String, Any>()
-
                     map["password"] = userDTO.password!!
-
                     if (userDTO.password!!.isNotEmpty() && passwordconfrim!!.isNotEmpty() && userDTO.password != password) {
                         ref.update(map).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
