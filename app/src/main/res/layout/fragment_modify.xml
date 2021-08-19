@@ -35,8 +35,7 @@
             android:text="이메일"
             app:layout_constraintBottom_toTopOf="@+id/modify_email"
             app:layout_constraintStart_toStartOf="@+id/modify_email"
-            tools:ignore="MissingConstraints"
-            />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/modify_email"

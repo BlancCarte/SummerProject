@@ -162,8 +162,6 @@ class SignUpActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-
-
         // 게터세터
         data class UserDTO(
             var uid: String? = null,

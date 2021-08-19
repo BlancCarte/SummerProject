@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityHomeBinding
+import com.example.summerproject.ui.chatlist.ChatListFragment
 import com.example.summerproject.ui.mypage.ModifyFragment
 import com.example.summerproject.ui.mypage.ModifyPasswordFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +24,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 private var firebaseAuth: FirebaseAuth? = null
-private var firebaseFirestore: FirebaseFirestore? = null
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -39,13 +39,21 @@ class HomeActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
-                R.id.dashboardFragment,
+                R.id.chatFragment,
                 R.id.notificationFragment,
                 R.id.myPageFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        var num = intent.getSerializableExtra("num")
+        if(num==1){
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_host, ChatListFragment())
+            fragmentTransaction.addToBackStack(null).commit()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
