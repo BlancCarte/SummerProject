@@ -2,27 +2,45 @@ package com.example.summerproject.ui.chatdetail
 
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerproject.databinding.ItemChatBinding
+import com.google.firebase.auth.FirebaseAuth
+import android.view.Gravity
+import androidx.core.view.marginLeft
 
+
+private var firebaseAuth: FirebaseAuth? = null
 
 class ChatItemAdapter : ListAdapter<ChatItem, ChatItemAdapter.ViewHolder>(diffUtil) {
-
     inner class ViewHolder(private val binding: ItemChatBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SimpleDateFormat")
+        @SuppressLint("SimpleDateFormat", "ResourceAsColor")
         fun bind(chatItem: ChatItem) {
+            firebaseAuth = FirebaseAuth.getInstance()
+            val uid =firebaseAuth!!.currentUser!!.uid
+            if(chatItem.senderId==uid) {
+                binding.senderTextView.gravity = Gravity.END
+                binding.messageTextView.gravity = Gravity.END
+                binding.chatCardView.setCardBackgroundColor((Color.parseColor("#fef01b")))
 
+            }
+            else{
+                binding.senderTextView.gravity = Gravity.START
+                binding.messageTextView.gravity = Gravity.START
+                binding.chatCardView.setCardBackgroundColor((Color.parseColor("#FFFFFF")))
+            }
             binding.senderTextView.text = chatItem.senderNickname
             binding.messageTextView.text = chatItem.message
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return ViewHolder(
             ItemChatBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -30,6 +48,7 @@ class ChatItemAdapter : ListAdapter<ChatItem, ChatItemAdapter.ViewHolder>(diffUt
                 false
             )
         )
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

@@ -2,10 +2,10 @@ package com.example.summerproject.ui.chatdetail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,8 +13,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.example.summerproject.DBKey.Companion.DB_CHAT
-import com.example.summerproject.R
 import com.example.summerproject.databinding.ActivityChatroomBinding
+import com.example.summerproject.databinding.FragmentMypageBinding
+import com.example.summerproject.databinding.ItemChatBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.properties.Delegates
 
@@ -47,6 +48,7 @@ class ChatRoomActivity : AppCompatActivity() {
         initChatListRecyclerView()
 
         initSendButton()
+
     }
 
     private fun initChatDB() {
@@ -88,6 +90,8 @@ class ChatRoomActivity : AppCompatActivity() {
                 senderNickname = nickname
             )
             chatDB.push().setValue(chatItem)
+            binding.messageEditText.setText("")
+
         }
     }
 }

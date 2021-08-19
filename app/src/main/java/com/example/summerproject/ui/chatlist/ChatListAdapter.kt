@@ -8,14 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerproject.databinding.ItemChatlistBinding
 
-
 class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
     ListAdapter<ChatListItem, ChatListAdapter.ViewHolder>(diffUtil) {
     inner class ViewHolder(private val binding: ItemChatlistBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SimpleDateFormat")
         fun bind(chatListItem: ChatListItem) {
-
             binding.root.setOnClickListener {
                 onItemClicked(chatListItem)
             }

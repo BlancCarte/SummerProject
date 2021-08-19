@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -19,12 +21,14 @@ import com.example.summerproject.R
 import com.example.summerproject.ui.chatdetail.ChatRoomActivity
 import com.example.summerproject.databinding.FragmentChatlistBinding
 
-class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
 
+class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
     private lateinit var binding: FragmentChatlistBinding
     private lateinit var chatListAdapter: ChatListAdapter
     private val chatRoomList = mutableListOf<ChatListItem>()
-    private var firebaseAuth: FirebaseAuth? = null
+    private val auth: FirebaseAuth by lazy {
+        Firebase.auth
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,7 +53,6 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
                 intent.putExtra("chatKey", chatRoom.key) // 인텐트로 키를 전달해서 start
                 startActivity(intent)
             }
-
         })
     }
 
@@ -59,9 +62,10 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
     }
 
     private fun initChatDB() {
-        val firebaseUser = firebaseAuth?.currentUser ?: return
+        val firebaseUser = auth.currentUser ?: return
         val chatDB =
             Firebase.database.reference.child(DB_USERS).child(firebaseUser.uid).child(CHILD_CHAT)
+
         // db에 있는 채팅 리스트를 불러와 각각 리스트에 더해준다.
         chatDB.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -75,7 +79,6 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
                 chatListAdapter.notifyDataSetChanged()
             }
             override fun onCancelled(error: DatabaseError) {}
-
         })
     }
 
@@ -84,5 +87,10 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
     override fun onResume() {
         super.onResume()
         chatListAdapter.notifyDataSetChanged()
+        val recyclerView = requireView().findViewById(R.id.chatListRecyclerView) as RecyclerView
+        recyclerView.addItemDecoration(DividerItemDecoration(requireView().context, 1))
+        chatListAdapter.notifyDataSetChanged()// view 를 다시 그림;
+
     }
+
 }

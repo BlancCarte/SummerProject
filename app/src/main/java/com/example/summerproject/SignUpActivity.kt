@@ -5,15 +5,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.summerproject.databinding.ActivityMainBinding
 import com.example.summerproject.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 private var firebaseAuth: FirebaseAuth? = null
 private var firebaseFirestore: FirebaseFirestore? = null
@@ -162,8 +158,6 @@ class SignUpActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-
-
         // 게터세터
         data class UserDTO(
             var uid: String? = null,
@@ -174,7 +168,6 @@ class SignUpActivity : AppCompatActivity() {
         )
 
         binding.btnRegister.setOnClickListener {
-
             var userDTO = UserDTO()
             userDTO.uid = firebaseAuth?.currentUser?.uid
             userDTO.email = binding.email.text.toString()
@@ -215,15 +208,3 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 }
-
-// 파이어베이스 잘 들어가는지 확인 (O)
-// 입력한 값이 파이어베이스에 들어가야 하니까 에딧텍스트에 입력 가능하게 해야함 (O)
-// 에딧 텍스트를 찾아서 온클릭 리스너를 적용 시켜야 한다 (O)
-// 닉네임이랑 전화번호는 쿼리문 사용해서 파이어스토어 디비에 넣기(O)
-// 회원가입 성공시 로그인 페이지로 돌아가서 다시 로그인 시키기(O)
-// 회원가입시 파이어스토어에 닉네임과 전화번호 보내기(O)
-// 로그인(O)
-
-// 이메일 비밀번호 전화번호 닉네임 유효성 검사(O)
-// 이메일 인증(O)
-// 추가 : 게시판

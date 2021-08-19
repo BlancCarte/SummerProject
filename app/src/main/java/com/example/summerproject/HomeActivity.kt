@@ -16,10 +16,8 @@ import com.example.summerproject.databinding.ActivityHomeBinding
 import com.example.summerproject.ui.chatlist.ChatListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 private var firebaseAuth: FirebaseAuth? = null
-private var firebaseFirestore: FirebaseFirestore? = null
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
