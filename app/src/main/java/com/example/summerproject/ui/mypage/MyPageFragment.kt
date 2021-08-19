@@ -31,6 +31,12 @@ class MyPageFragment : Fragment() {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,12 +46,6 @@ class MyPageFragment : Fragment() {
 
         mBinding = binding
         return mBinding?.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
     }
 
     override fun onResume() {
@@ -84,14 +84,11 @@ class MyPageFragment : Fragment() {
                 }
         }
 
-
         mBinding!!.profilePassword.setOnClickListener {
             val currentemail = firebaseAuth!!.currentUser?.email.toString()
-
             firebaseFirestore!!.collection("userinfo").document(currentemail).get()
                 .addOnSuccessListener { documentSnapshot ->
                     val password = documentSnapshot.get("password").toString()
-
                     val builder = AlertDialog.Builder(context)
                     val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
                     var editText = builderItem.checkPassword.text
@@ -111,15 +108,11 @@ class MyPageFragment : Fragment() {
                 }
         }
 
-
         mBinding!!.profileDelete.setOnClickListener {
             val user = firebaseAuth!!.currentUser!!
-
             var currentemail = firebaseAuth!!.currentUser?.email.toString()
-
             firebaseFirestore!!.collection("userinfo").document(currentemail).get()
                 .addOnSuccessListener { documentSnapshot ->
-
                     val password = documentSnapshot.get("password").toString()
                     val builder = AlertDialog.Builder(context)
                     val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)

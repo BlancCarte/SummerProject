@@ -1,9 +1,8 @@
-package com.example.summerproject.ui.chatList
+package com.example.summerproject.ui.chatlist
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -20,17 +18,13 @@ import com.example.summerproject.DBKey.Companion.DB_USERS
 import com.example.summerproject.R
 import com.example.summerproject.ui.chatdetail.ChatRoomActivity
 import com.example.summerproject.databinding.FragmentChatlistBinding
-import com.example.summerproject.ui.home.ArticleAdapter
 
 class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
 
     private lateinit var binding: FragmentChatlistBinding
     private lateinit var chatListAdapter: ChatListAdapter
     private val chatRoomList = mutableListOf<ChatListItem>()
-
-    private val auth: FirebaseAuth by lazy {
-        Firebase.auth
-    }
+    private var firebaseAuth: FirebaseAuth? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,11 +59,9 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
     }
 
     private fun initChatDB() {
-        val firebaseUser = auth.currentUser ?: return
-
+        val firebaseUser = firebaseAuth?.currentUser ?: return
         val chatDB =
             Firebase.database.reference.child(DB_USERS).child(firebaseUser.uid).child(CHILD_CHAT)
-
         // db에 있는 채팅 리스트를 불러와 각각 리스트에 더해준다.
         chatDB.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -82,7 +74,6 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
                 chatListAdapter.submitList(chatRoomList)
                 chatListAdapter.notifyDataSetChanged()
             }
-
             override fun onCancelled(error: DatabaseError) {}
 
         })
@@ -92,8 +83,6 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-
         chatListAdapter.notifyDataSetChanged()
     }
-
 }

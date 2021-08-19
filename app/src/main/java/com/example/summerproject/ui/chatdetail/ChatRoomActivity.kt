@@ -23,15 +23,9 @@ private var firebaseAuth: FirebaseAuth? = null
 private var firebaseFirestore: FirebaseFirestore? = null
 private lateinit var nickname:String
 class ChatRoomActivity : AppCompatActivity() {
-
-    private val binding by lazy { ActivityChatroomBinding.inflate(layoutInflater) }
-
-    private val auth: FirebaseAuth by lazy {
-        Firebase.auth
-    }
+    private val binding by lazy { ActivityChatroomBinding.inflate(layoutInflater)}
 
     private val chatList = mutableListOf<ChatItem>()
-
     private val adapter = ChatItemAdapter()
     lateinit var chatDB : DatabaseReference
     var chatKey by Delegates.notNull<Long>()
@@ -53,13 +47,10 @@ class ChatRoomActivity : AppCompatActivity() {
         initChatListRecyclerView()
 
         initSendButton()
-
     }
 
     private fun initChatDB() {
-
         chatDB = Firebase.database.reference.child(DB_CHAT).child("$chatKey")
-
         chatDB.addChildEventListener(object: ChildEventListener{
             @SuppressLint("NotifyDataSetChanged")
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -80,9 +71,7 @@ class ChatRoomActivity : AppCompatActivity() {
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
 
             override fun onCancelled(error: DatabaseError) {}
-
         })
-
     }
 
     private fun initChatListRecyclerView() {
@@ -92,13 +81,12 @@ class ChatRoomActivity : AppCompatActivity() {
 
     private fun initSendButton() {
         binding.sendButton.setOnClickListener {
-            auth.currentUser?:return@setOnClickListener
+            firebaseAuth?.currentUser?:return@setOnClickListener
             val chatItem = ChatItem(
-                senderId = auth.currentUser!!.uid,
+                senderId = firebaseAuth?.currentUser!!.uid,
                 message = binding.messageEditText.text.toString(),
                 senderNickname = nickname
             )
-
             chatDB.push().setValue(chatItem)
         }
     }

@@ -1,4 +1,4 @@
-package com.example.summerproject.ui.home
+package com.example.summerproject
 
 data class ArticleModel(
     val sellerEmail: String,

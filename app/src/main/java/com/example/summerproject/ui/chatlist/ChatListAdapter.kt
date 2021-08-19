@@ -1,4 +1,4 @@
-package com.example.summerproject.ui.chatList
+package com.example.summerproject.ui.chatlist
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,16 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.summerproject.databinding.ItemArticleBinding
 import com.example.summerproject.databinding.ItemChatlistBinding
-import com.example.summerproject.ui.home.ArticleModel
-import java.text.SimpleDateFormat
-import java.util.*
+
 
 class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
     ListAdapter<ChatListItem, ChatListAdapter.ViewHolder>(diffUtil) {
-
     inner class ViewHolder(private val binding: ItemChatlistBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SimpleDateFormat")
@@ -24,9 +19,7 @@ class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
             binding.root.setOnClickListener {
                 onItemClicked(chatListItem)
             }
-
             binding.chatRoomTitleTextView.text = chatListItem.itemTitle
-
         }
     }
 
@@ -50,13 +43,10 @@ class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
                 // 현재 노출하고 있는 아이템과 새로운 아이템이 같은지 비교;
                 return oldItem.key == newItem.key
             }
-
             override fun areContentsTheSame(oldItem: ChatListItem, newItem: ChatListItem): Boolean {
                 // equals 비교;
                 return oldItem == newItem
-
             }
-
         }
     }
 }

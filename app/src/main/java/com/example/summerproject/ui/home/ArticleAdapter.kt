@@ -1,15 +1,14 @@
 package com.example.summerproject.ui.home
 
-
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.summerproject.databinding.ItemArticleBinding
+import com.example.summerproject.ArticleModel
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.summerproject.ui.chatList.ChatListItem
 import com.example.summerproject.databinding.ItemChatBinding
-import com.example.summerproject.databinding.ItemChatlistBinding
 
 
 class ChatItemAdapter : ListAdapter<ChatItem, ChatItemAdapter.ViewHolder>(diffUtil) {

@@ -2,7 +2,6 @@ package com.example.summerproject.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -11,11 +10,7 @@ import com.example.summerproject.DBKey.Companion.CHILD_CHAT
 import com.example.summerproject.DBKey.Companion.DB_USERS
 import com.example.summerproject.HomeActivity
 import com.example.summerproject.databinding.ActivityDetailBinding
-import com.example.summerproject.ui.chatList.ChatListFragment
-import com.example.summerproject.ui.chatList.ChatListItem
-import com.example.summerproject.ui.chatdetail.ChatRoomActivity
-import com.example.summerproject.ui.mypage.ModifyFragment
-import com.google.android.material.snackbar.Snackbar
+import com.example.summerproject.ui.chatlist.ChatListItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -29,7 +24,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var selleremail:String
     private lateinit var title1:String
     private lateinit var sellerId:String
-
     private lateinit var userDB: DatabaseReference
 
 
@@ -40,6 +34,7 @@ class DetailActivity : AppCompatActivity() {
         setTitle("상세정보")
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         var title = intent.getSerializableExtra("title")
         var imageurl = intent.getSerializableExtra("imageurl")
         var price = intent.getSerializableExtra("price")
@@ -49,14 +44,16 @@ class DetailActivity : AppCompatActivity() {
         selleremail = intent.getSerializableExtra("sellerEmail") as String
         title1 = intent.getStringExtra("title") as String
         sellerId = intent.getStringExtra("sellerId") as String
-        val key = title.toString().plus(price).plus(content)
+
         binding.titleTextView.text = title.toString()
         binding.sellerNicknameTextView.text = sellerEmail.toString()
         binding.priceTextView.text = price.toString()
         binding.contentTextView.text = content.toString()
+
         Glide.with(binding.titleimageView)
             .load(imageurl)
             .into(binding.titleimageView)
+
         if (sellerEmail != firebaseAuth?.currentUser?.email) {
             binding.deleteButton.isVisible = false
         } else {
@@ -102,23 +99,18 @@ class DetailActivity : AppCompatActivity() {
                         .push()
                         .setValue(chatRoom)
 
-                    Toast.makeText(view, "채팅리스트 확인바람.", Toast.LENGTH_LONG).show()
                     var num = 1
                     val intent = Intent(this, HomeActivity::class.java)
                     intent.putExtra("num", num)
                     startActivity(intent)
 
-
-
                 }else{
                     // 내가 올린 아이템 일때
-                    Toast.makeText(view, "내가 올린 아이템입니다.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(view, "내가 올린 제품입니다.", Toast.LENGTH_LONG).show()
                 }
             }else{
                 // 로그아웃 상태;
                 Toast.makeText(view, "로그인 후 사용해주세요", Toast.LENGTH_LONG).show()
             }
-
-
         }
     }

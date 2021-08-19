@@ -1,4 +1,4 @@
-package com.example.summerproject.ui.chatList
+package com.example.summerproject.ui.chatlist
 
 data class ChatListItem(
     val buyerId: String,
