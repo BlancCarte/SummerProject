@@ -11,7 +11,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/messageEditText"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:background="#93A1CA"/>
 
     <EditText
         android:id="@+id/messageEditText"
@@ -23,7 +24,7 @@
     <Button
         android:id="@+id/sendButton"
         android:text="전송"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="#FF9614"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"

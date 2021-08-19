@@ -3,30 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/chatFragment"
-    tools:context="com.example.summerproject.ui.chatlist.ChatListFragment"
     android:background="#FFFFFF"
     android:clickable="true">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/toolbayLayout"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center_vertical"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16.18dp"
-            android:text="채팅방 리스트"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
