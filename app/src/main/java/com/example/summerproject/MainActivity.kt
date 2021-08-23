@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.summerproject.databinding.ActivityMainBinding
+import com.example.summerproject.ui.chatlist.ChatListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -35,15 +36,22 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
-                R.id.dashboardFragment,
+                R.id.chatFragment,
                 R.id.notificationFragment,
                 R.id.myPageFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
 
+        val num = intent.getSerializableExtra("num")
+        if(num==1){
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_host, ChatListFragment())
+            fragmentTransaction.addToBackStack(null).commit()
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
@@ -52,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     //액션버튼 클릭 했을 때
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
+        when (item.itemId) {
             R.id.action_search -> { //검색 버튼 눌렀을 때
                 Toast.makeText(applicationContext, "검색 실행", Toast.LENGTH_SHORT).show()
                 return super.onOptionsItemSelected(item)
@@ -85,5 +93,4 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_host, fragment).commit()
     }
-
 }

@@ -16,6 +16,10 @@
             android:name=".ui.home.AddArticleActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.chatdetail.ChatRoomActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
             android:name=".ui.home.DetailActivity"
             android:exported="true" />
         <activity

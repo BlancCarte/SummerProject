@@ -31,21 +31,20 @@ class MyPageFragment : Fragment() {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentMypageBinding.inflate(inflater, container, false)
-
         mBinding = binding
         return mBinding?.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
     }
 
     override fun onResume() {
@@ -67,12 +66,13 @@ class MyPageFragment : Fragment() {
 
                     val builder = AlertDialog.Builder(context)
                     val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
-                    var editText = builderItem.checkPassword.text
+                    val editText = builderItem.checkPassword.text
+                    val regex = Regex("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@!%*#?&]).{8,15}")
                     with(builder) {
                         setTitle("비밀번호 확인")
                         setMessage("비밀번호를 입력하세요")
                         setView(builderItem.root)
-                        setPositiveButton("OK") { dialogInterface: DialogInterface, i: Int ->
+                        setPositiveButton("OK") { _: DialogInterface, _: Int ->
                             if (editText.toString() == password) {
                                 mainActivity?.replaceFragment(ModifyFragment())
                             } else {
@@ -84,22 +84,20 @@ class MyPageFragment : Fragment() {
                 }
         }
 
-
         mBinding!!.profilePassword.setOnClickListener {
             val currentemail = firebaseAuth!!.currentUser?.email.toString()
-
             firebaseFirestore!!.collection("userinfo").document(currentemail).get()
                 .addOnSuccessListener { documentSnapshot ->
                     val password = documentSnapshot.get("password").toString()
-
                     val builder = AlertDialog.Builder(context)
                     val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
-                    var editText = builderItem.checkPassword.text
+                    val editText = builderItem.checkPassword.text
+                    val regex = Regex("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@!%*#?&]).{8,15}")
                     with(builder) {
                         setTitle("비밀번호 확인")
                         setMessage("비밀번호를 입력하세요")
                         setView(builderItem.root)
-                        setPositiveButton("OK") { dialogInterface: DialogInterface, i: Int ->
+                        setPositiveButton("OK") { _: DialogInterface, i: Int ->
                             if (editText.toString() == password) {
                                 mainActivity?.replaceFragment(ModifyPasswordFragment())
                             } else {
@@ -111,25 +109,21 @@ class MyPageFragment : Fragment() {
                 }
         }
 
-
         mBinding!!.profileDelete.setOnClickListener {
             val user = firebaseAuth!!.currentUser!!
-
-            var currentemail = firebaseAuth!!.currentUser?.email.toString()
-
+            val currentemail = firebaseAuth!!.currentUser?.email.toString()
             firebaseFirestore!!.collection("userinfo").document(currentemail).get()
                 .addOnSuccessListener { documentSnapshot ->
-
                     val password = documentSnapshot.get("password").toString()
                     val builder = AlertDialog.Builder(context)
                     val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
-                    var editText = builderItem.checkPassword.text
+                    val editText = builderItem.checkPassword.text
 
                     with(builder) {
                         setTitle("비밀번호 확인")
                         setMessage("비밀번호를 입력하세요")
                         setView(builderItem.root)
-                        setPositiveButton("OK") { dialogInterface: DialogInterface, i: Int ->
+                        setPositiveButton("OK") { _: DialogInterface, i: Int ->
                             if (editText.toString() == password) {
                                 firebaseFirestore!!.collection("userinfo").document(currentemail)
                                     .delete()
@@ -152,6 +146,12 @@ class MyPageFragment : Fragment() {
         }
         super.onResume()
     }
+
+    override fun onStop() {
+        mBinding = null
+        super.onStop()
+    }
+
 
     override fun onDestroyView() {
         mBinding = null
