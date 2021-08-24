@@ -88,6 +88,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 senderNickname = nickname
             )
             chatDB.push().setValue(chatItem)
+            binding.messageEditText.setText("")
             binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
         }
     }

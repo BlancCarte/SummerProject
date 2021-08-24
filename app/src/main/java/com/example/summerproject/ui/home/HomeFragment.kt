@@ -25,7 +25,6 @@ import com.google.firebase.ktx.Firebase
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-
     private lateinit var articleDB: DatabaseReference
     private lateinit var userDB: DatabaseReference
     private lateinit var articleAdapter: ArticleAdapter
