@@ -3,6 +3,7 @@ package com.example.summerproject.ui.chatdetail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
+import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -18,8 +19,10 @@ import com.example.summerproject.databinding.FragmentMypageBinding
 import com.example.summerproject.databinding.ItemChatBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.properties.Delegates
+import android.content.Intent
+import com.example.summerproject.ui.chatlist.ChatListAdapter
 
-
+private var chatItemAdapter = ChatItemAdapter
 private var firebaseAuth: FirebaseAuth? = null
 private var firebaseFirestore: FirebaseFirestore? = null
 private lateinit var nickname:String
@@ -43,6 +46,7 @@ class ChatRoomActivity : AppCompatActivity() {
             }
         chatKey = intent.getLongExtra("chatKey", -1)
 
+
         initChatDB()
 
         initChatListRecyclerView()
@@ -50,6 +54,7 @@ class ChatRoomActivity : AppCompatActivity() {
         initSendButton()
 
     }
+
 
     private fun initChatDB() {
         chatDB = Firebase.database.reference.child(DB_CHAT).child("$chatKey")
@@ -64,6 +69,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 chatList.add(chatItem)
                 adapter.submitList(chatList)
                 adapter.notifyDataSetChanged()
+                binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -79,6 +85,7 @@ class ChatRoomActivity : AppCompatActivity() {
     private fun initChatListRecyclerView() {
         binding.chatListRecyclerView.adapter = adapter
         binding.chatListRecyclerView.layoutManager = LinearLayoutManager(this)
+
     }
 
     private fun initSendButton() {
@@ -91,6 +98,7 @@ class ChatRoomActivity : AppCompatActivity() {
             )
             chatDB.push().setValue(chatItem)
             binding.messageEditText.setText("")
+            binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
 
         }
     }

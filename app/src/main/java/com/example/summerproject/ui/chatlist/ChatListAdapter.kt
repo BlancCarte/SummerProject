@@ -6,7 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.summerproject.databinding.ActivityChatroomBinding
+import com.example.summerproject.databinding.ActivityHomeBinding
 import com.example.summerproject.databinding.ItemChatlistBinding
+import com.example.summerproject.ui.chatdetail.ChatItem
+import java.nio.file.Files.size
+
+private var binding1: ActivityChatroomBinding? = null
+private val chatList = mutableListOf<ChatItem>()
 
 class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
     ListAdapter<ChatListItem, ChatListAdapter.ViewHolder>(diffUtil) {
@@ -15,7 +22,9 @@ class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
         @SuppressLint("SimpleDateFormat")
         fun bind(chatListItem: ChatListItem) {
             binding.root.setOnClickListener {
+
                 onItemClicked(chatListItem)
+
             }
             binding.chatRoomTitleTextView.text = chatListItem.itemTitle
         }
@@ -34,6 +43,8 @@ class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
+
+
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<ChatListItem>() {
