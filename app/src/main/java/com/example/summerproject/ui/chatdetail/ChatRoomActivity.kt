@@ -63,6 +63,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 chatList.add(chatItem)
                 adapter.submitList(chatList)
                 adapter.notifyDataSetChanged()
+                binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -89,6 +90,8 @@ class ChatRoomActivity : AppCompatActivity() {
                 senderNickname = nickname
             )
             chatDB.push().setValue(chatItem)
+            binding.messageEditText.setText("")
+            binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
         }
     }
 }
