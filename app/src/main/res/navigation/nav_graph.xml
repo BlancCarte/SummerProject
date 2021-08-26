@@ -26,9 +26,9 @@
         tools:layout="@layout/fragment_mypage" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.summerproject.ui.notification.NotificationFragment"
+        android:name="com.example.summerproject.ui.map.MapFragment"
         android:label="알림"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.summerproject.ui.chatlist.ChatListFragment"
