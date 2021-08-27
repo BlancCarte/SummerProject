@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -38,6 +39,9 @@ android {
 
 dependencies {
 
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0' // 구글지도 라이브러리
+    implementation 'com.google.android.gms:play-services-location:17.0.0' // 위치정보 라이브러리
     implementation platform('com.google.firebase:firebase-bom:28.2.1')
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

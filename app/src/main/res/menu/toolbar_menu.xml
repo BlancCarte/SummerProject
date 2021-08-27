@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
         android:id="@+id/action_search"
-        android:title="검색"
         android:icon="@drawable/ic_search_black"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
-
     <item
         android:id="@+id/action_notification"
         android:title="알림"
-        android:icon="@drawable/ic_baseline_explore_24"
-        app:showAsAction="always" />
-
-    <item
-        android:id='@+id/action_userinfo'
-        android:title="회원정보" />
-
-    <item
-        android:id='@+id/action_option'
-        android:title="설정" />
-
+        android:icon="@drawable/ic_baseline_notifications_24"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_logout"
-        android:title="로그아웃"/>
+        android:title="로그아웃"
+        android:icon="@drawable/ic_baseline_logout_24"
+        app:showAsAction="ifRoom"/>
 </menu>

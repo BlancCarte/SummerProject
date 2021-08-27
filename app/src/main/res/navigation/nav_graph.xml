@@ -16,19 +16,19 @@
             android:id="@+id/action_homeFragment_to_myPageFragment"
             app:destination="@id/myPageFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+            android:id="@+id/action_homeFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
         android:name="com.example.summerproject.ui.mypage.MyPageFragment"
         android:label="내정보"
         tools:layout="@layout/fragment_mypage" />
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="com.example.summerproject.ui.notification.NotificationFragment"
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="com.example.summerproject.ui.map.MapsActivity"
         android:label="알림"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/activity_maps" />
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.summerproject.ui.chatlist.ChatListFragment"
