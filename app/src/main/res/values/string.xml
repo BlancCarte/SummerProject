@@ -7,5 +7,6 @@
     <string name="title_notifications">알림</string>
     <string name="title_mypage">마이페이지</string>
     <string name="title_activity_maps">지도</string>
+    <string name="chat_room">채팅방</string>
 
 </resources>

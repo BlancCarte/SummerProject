@@ -32,6 +32,7 @@
         <activity
             android:name=".ui.chatdetail.ChatRoomActivity"
             android:exported="true"
+            android:label="@string/chat_room"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.home.DetailActivity"

@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
-    android:layout_height="wrap_content">
+    android:id="@+id/chatList_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:maxWidth="50dp"
+    app:cardCornerRadius="4dp">
 
-    <TextView
-        android:id="@+id/chatRoomTitleTextView"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        tools:text="DEMO TEXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/chatRoomTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="DEMO TEXT" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

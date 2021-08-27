@@ -1,6 +1,7 @@
 package com.example.summerproject.ui.chatlist
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -18,6 +19,7 @@ class ChatListAdapter(val onItemClicked: (ChatListItem) -> Unit) :
                 onItemClicked(chatListItem)
             }
             binding.chatRoomTitleTextView.text = chatListItem.itemTitle
+            binding.chatListCardView.setCardBackgroundColor((Color.parseColor("#FFFFFF")))
         }
     }
 
