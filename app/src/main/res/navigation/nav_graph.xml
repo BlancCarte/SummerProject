@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.summerproject.ui.home.HomeFragment"
+        android:name="com.orangemarket.orangemarket.ui.home.HomeFragment"
         android:label="중고거래 장터"
         tools:layout="@layout/fragment_home" >
         <action
@@ -21,17 +21,17 @@
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.example.summerproject.ui.mypage.MyPageFragment"
+        android:name="com.orangemarket.orangemarket.ui.mypage.MyPageFragment"
         android:label="내정보"
         tools:layout="@layout/fragment_mypage" />
     <activity
         android:id="@+id/mapsActivity"
-        android:name="com.example.summerproject.ui.map.MapsActivity"
+        android:name="com.orangemarket.orangemarket.ui.map.MapsActivity"
         android:label="알림"
         tools:layout="@layout/activity_maps" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.summerproject.ui.chatlist.ChatListFragment"
+        android:name="com.orangemarket.orangemarket.ui.chatlist.ChatListFragment"
         android:label="채팅"
         tools:layout="@layout/fragment_chatlist" />
 </navigation>

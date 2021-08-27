@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "448650924533",
+    "firebase_url": "https://summerproject-f627f-default-rtdb.firebaseio.com",
     "project_id": "summerproject-f627f",
     "storage_bucket": "summerproject-f627f.appspot.com"
   },
@@ -29,6 +30,59 @@
             {
               "client_id": "448650924533-kt54srjq82oktperg4igv100m97nmt4t.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "448650924533-osrpi293qk90i4qsrblenqphuk7ac8u4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "123",
+                "app_store_id": "123"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448650924533:android:36013a39d0b6ab157b50bc",
+        "android_client_info": {
+          "package_name": "com.orangemarket.orangemarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448650924533-7p98a16hdmc7frutea6t5jltd2bu4dmp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orangemarket.orangemarket",
+            "certificate_hash": "5c796f7c516133315efbd288bb20502fc62a42ea"
+          }
+        },
+        {
+          "client_id": "448650924533-kt54srjq82oktperg4igv100m97nmt4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdTtOhL6ap1lygmuETUtdHfo6s94Ur7CY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448650924533-kt54srjq82oktperg4igv100m97nmt4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "448650924533-osrpi293qk90i4qsrblenqphuk7ac8u4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "123",
+                "app_store_id": "123"
+              }
             }
           ]
         }
