@@ -58,6 +58,16 @@ class MyPageFragment : Fragment() {
                 mBinding!!.email.setText(currentemail)
             }
 
+        mBinding!!.sell.setOnClickListener{
+            Toast.makeText(context, "판매내역 실행", Toast.LENGTH_SHORT).show()
+        }
+        mBinding!!.buy.setOnClickListener{
+            Toast.makeText(context, "구매내역 실행", Toast.LENGTH_SHORT).show()
+        }
+        mBinding!!.interest.setOnClickListener{
+            Toast.makeText(context, "찜목록 실행", Toast.LENGTH_SHORT).show()
+        }
+
         mBinding!!.profileModify.setOnClickListener {
             val currentemail = firebaseAuth!!.currentUser?.email.toString()
 

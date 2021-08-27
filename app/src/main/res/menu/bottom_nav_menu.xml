@@ -13,9 +13,9 @@
         android:title="@string/title_chat" />
 
     <item
-        android:id="@+id/notificationFragment"
+        android:id="@+id/mapsActivity"
         android:icon="@drawable/ic_baseline_explore_24"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_activity_maps" />
     <item
         android:id="@+id/myPageFragment"
         android:icon="@drawable/ic_mypage_black_24dp"
