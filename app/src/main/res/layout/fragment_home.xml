@@ -25,6 +25,4 @@
         app:tint="@color/white"
         android:src="@drawable/ic_baseline_add_24"/>
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

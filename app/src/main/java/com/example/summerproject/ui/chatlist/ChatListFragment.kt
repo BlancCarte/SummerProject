@@ -54,6 +54,10 @@ class ChatListFragment : Fragment(R.layout.fragment_chatlist) {
         })
     }
 
+    private fun finish() {
+        finish()
+    }
+
     private fun initChartRecyclerView() {
         binding.chatListRecyclerView.adapter = chatListAdapter
         binding.chatListRecyclerView.layoutManager = LinearLayoutManager(context)

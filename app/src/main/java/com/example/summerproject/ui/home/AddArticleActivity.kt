@@ -1,6 +1,7 @@
 package com.example.summerproject.ui.home
 
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -21,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 
 private var firebaseAuth: FirebaseAuth? = null
+@SuppressLint("StaticFieldLeak")
 private var firebaseFirestore: FirebaseFirestore? = null
 
 class AddArticleActivity : AppCompatActivity() {

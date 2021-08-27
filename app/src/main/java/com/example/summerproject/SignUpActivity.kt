@@ -1,5 +1,6 @@
 package com.example.summerproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 private var firebaseAuth: FirebaseAuth? = null
+@SuppressLint("StaticFieldLeak")
 private var firebaseFirestore: FirebaseFirestore? = null
 
 class SignUpActivity : AppCompatActivity() {
@@ -23,7 +25,7 @@ class SignUpActivity : AppCompatActivity() {
 
         val binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide();
+        supportActionBar?.hide()
 
         //이메일 유효성검사
         binding.email.addTextChangedListener(object : TextWatcher {
@@ -108,23 +110,26 @@ class SignUpActivity : AppCompatActivity() {
         //TextWatcher : 원하는 규칙에 대해서 실시간으로 검증하기 위해
         binding.passwordConfirm.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                var pw = binding.password.text.toString()
-                var pwconfirm = binding.passwordConfirm.text.toString()
-                if (binding.passwordConfirm.text.toString() == (binding.password.text.toString())) {
-                    binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
-                    binding.passwordConfirmCheckText.text = "비밀번호가 일치합니다."
-                    binding.btnRegister.isEnabled = true
-                }
-                else if (binding.passwordConfirm.text.toString() != (binding.password.text.toString())) {
-                    binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    binding.passwordConfirmCheckText.text = "비밀번호가 일치하지 않습니다."
-                    binding.btnRegister.isEnabled = false
+                binding.password.text.toString()
+                binding.passwordConfirm.text.toString()
+                when {
+                    binding.passwordConfirm.text.toString() == (binding.password.text.toString()) -> {
+                        binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#369F36"))
+                        binding.passwordConfirmCheckText.text = "비밀번호가 일치합니다."
+                        binding.btnRegister.isEnabled = true
+                    }
+                    binding.passwordConfirm.text.toString() != (binding.password.text.toString()) -> {
+                        binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
+                        binding.passwordConfirmCheckText.text = "비밀번호가 일치하지 않습니다."
+                        binding.btnRegister.isEnabled = false
 
-                } else {
-                    binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
-                    binding.passwordConfirmCheckText.text = "비밀번호가 일치하지 않습니다."
-                    binding.btnRegister.isEnabled = false
+                    }
+                    else -> {
+                        binding.passwordConfirmCheckText.setTextColor(Color.parseColor("#ff0000"))
+                        binding.passwordConfirmCheckText.text = "비밀번호가 일치하지 않습니다."
+                        binding.btnRegister.isEnabled = false
 
+                    }
                 }
 
             }

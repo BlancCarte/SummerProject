@@ -1,5 +1,6 @@
 package com.example.summerproject.ui.mypage
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -21,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 
 
 private var firebaseAuth: FirebaseAuth? = null
+@SuppressLint("StaticFieldLeak")
 private var firebaseFirestore: FirebaseFirestore? = null
 
 

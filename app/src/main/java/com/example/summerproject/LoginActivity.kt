@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         if(firebaseAuth!!.currentUser!=null && firebaseAuth!!.currentUser!!.isEmailVerified){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.goToSignUp.setOnClickListener {
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
         } else if(email.isNotEmpty() && password.isNotEmpty()){
             firebaseAuth?.signInWithEmailAndPassword(email, password)?.addOnCompleteListener(this) { task ->
                 if(task.isSuccessful){
-                    var user= firebaseAuth!!.currentUser!!.isEmailVerified
+                    val user= firebaseAuth!!.currentUser!!.isEmailVerified
                     if (user) {
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)

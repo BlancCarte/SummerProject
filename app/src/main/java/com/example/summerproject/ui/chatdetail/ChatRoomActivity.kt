@@ -3,6 +3,7 @@ package com.example.summerproject.ui.chatdetail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.summerproject.DBKey.Companion.DB_CHAT
 import com.example.summerproject.databinding.ActivityChatroomBinding
@@ -18,16 +19,18 @@ import kotlin.properties.Delegates
 
 
 private var firebaseAuth: FirebaseAuth? = null
+
+@SuppressLint("StaticFieldLeak")
 private var firebaseFirestore: FirebaseFirestore? = null
-private lateinit var nickname:String
+private lateinit var nickname: String
 
 class ChatRoomActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityChatroomBinding.inflate(layoutInflater)}
+    private val binding by lazy { ActivityChatroomBinding.inflate(layoutInflater) }
 
     private val chatList = mutableListOf<ChatItem>()
     private val adapter = ChatItemAdapter()
-    lateinit var chatDB : DatabaseReference
-    var chatKey by Delegates.notNull<Long>()
+    private lateinit var chatDB: DatabaseReference
+    private var chatKey by Delegates.notNull<Long>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,18 +53,18 @@ class ChatRoomActivity : AppCompatActivity() {
 
     private fun initChatDB() {
         chatDB = Firebase.database.reference.child(DB_CHAT).child("$chatKey")
-        chatDB.addChildEventListener(object: ChildEventListener{
+        chatDB.addChildEventListener(object : ChildEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
                 val chatItem = snapshot.getValue(ChatItem::class.java)
-                chatItem?:return
+                chatItem ?: return
 
                 // 채팅 추가;
                 chatList.add(chatItem)
                 adapter.submitList(chatList)
                 adapter.notifyDataSetChanged()
-                binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
+                binding.chatListRecyclerView.scrollToPosition(chatList.size - 1)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -81,7 +84,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
     private fun initSendButton() {
         binding.sendButton.setOnClickListener {
-            firebaseAuth?.currentUser?:return@setOnClickListener
+            firebaseAuth?.currentUser ?: return@setOnClickListener
             val chatItem = ChatItem(
                 senderId = firebaseAuth?.currentUser!!.uid,
                 message = binding.messageEditText.text.toString(),
@@ -89,8 +92,13 @@ class ChatRoomActivity : AppCompatActivity() {
             )
             chatDB.push().setValue(chatItem)
             binding.messageEditText.setText("")
-            binding.chatListRecyclerView.scrollToPosition(chatList.size-1)
+            binding.chatListRecyclerView.scrollToPosition(chatList.size - 1)
+            binding.messageEditText.addTextChangedListener { text ->
+                binding.sendButton.isEnabled = text.toString() != ""
+            }
         }
     }
-
+    override fun onBackPressed() {
+        finish()
+    }
 }

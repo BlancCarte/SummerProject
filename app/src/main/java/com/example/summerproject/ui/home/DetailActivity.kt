@@ -29,7 +29,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var sellerId: String
     private lateinit var userDB: DatabaseReference
     private lateinit var dbkey1: String
-    private var aaa: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +73,7 @@ class DetailActivity : AppCompatActivity() {
             }
 
         binding.submitButton.setOnClickListener {
-            aaa()
+            initArticleAdapter2()
         }
     }
 
@@ -106,14 +105,14 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("num", num)
             startActivity(intent)
-
+            finish()
         } else {
             // 내가 올린 아이템 일때
-            Toast.makeText(this, "내가 올린 제품입니다.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "내가 올린 제품입니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun aaa() {
+    private fun initArticleAdapter2() {
         val database = FirebaseDatabase.getInstance().reference
 
         val buyerId = firebaseAuth?.currentUser?.uid.toString()
@@ -121,17 +120,23 @@ class DetailActivity : AppCompatActivity() {
         val itemTitle = title1
         val key1 = buyerId.plus(sellerId).plus(itemTitle)
         database.child("Users").child(buyerId).child("chat").child(key1)
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     dbkey1 = snapshot.child("key1").value.toString()
-
                     if (dbkey1 != key1) {
                         initArticleAdapter()
+                    } else {
+                        Toast.makeText(this@DetailActivity, "이미 생성된 채팅방입니다", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
-                override fun onCancelled(error: DatabaseError) {}
+                override fun onCancelled(error: DatabaseError) {
+                }
             })
+    }
+    override fun onBackPressed() {
+        finish()
     }
 
 }

@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.mainToolbar.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val navView: BottomNavigationView = binding.bottomNavView
         val navController = findNavController(R.id.fragment_host)
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.homeFragment,
                 R.id.chatFragment,
-                R.id.notificationFragment,
+                R.id.mapsActivity,
                 R.id.myPageFragment
             )
         )
@@ -66,20 +65,12 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
             R.id.action_notification -> { //알림 버튼 눌렀을 때
-                Toast.makeText(applicationContext, "알림 실행", Toast.LENGTH_SHORT).show()
-                return super.onOptionsItemSelected(item)
-            }
-            R.id.action_userinfo -> {//회원정보 눌렀을 때
-                Toast.makeText(applicationContext, "회원정보 실행", Toast.LENGTH_SHORT).show()
-                return super.onOptionsItemSelected(item)
-            }
-            R.id.action_option -> {//회원정보 눌렀을 때
-                Toast.makeText(applicationContext, "설정 실행", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "알림", Toast.LENGTH_SHORT).show()
                 return super.onOptionsItemSelected(item)
             }
             R.id.action_logout -> { //로그아웃 버튼 눌렀을 때
                 Toast.makeText(applicationContext, "로그아웃 실행", Toast.LENGTH_SHORT).show()
-                firebaseAuth!!.signOut();
+                firebaseAuth!!.signOut()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 return super.onOptionsItemSelected(item)

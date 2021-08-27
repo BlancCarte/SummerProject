@@ -1,5 +1,6 @@
 package com.example.summerproject.ui.mypage
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 private var firebaseAuth: FirebaseAuth? = null
+@SuppressLint("StaticFieldLeak")
 private var firebaseFirestore: FirebaseFirestore? = null
 
 class MyPageFragment : Fragment() {
