@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">SummerProject</string>
+
+
+    <string name="app_name">오렌지마켓</string>
     <string name="title_home">홈</string>
     <string name="title_chat">채팅</string>
-    <string name="title_notifications">지도</string>
+    <string name="title_notifications">알림</string>
     <string name="title_mypage">마이페이지</string>
+    <string name="title_activity_maps">지도</string>
+
 </resources>
