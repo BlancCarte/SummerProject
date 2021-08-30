@@ -90,7 +90,8 @@
     교재에 나오지 않은 내용 검색
     
 ## 4. 구현 사진
-
+  + ### 메인화면(로그인 화면)
+    ![KakaoTalk_20210827_155500127](https://user-images.githubusercontent.com/76707524/131330877-10d60a3c-7780-40fa-9e65-04e8d77c1502.jpg)
     
 ## 5. 각 클래스별 코드
   + ### MainActivity(LoginActivity)
