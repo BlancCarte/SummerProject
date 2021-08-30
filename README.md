@@ -91,7 +91,22 @@
     
 ## 4. 구현 사진
   + ### 메인화면(로그인 화면)
-    ![KakaoTalk_20210827_155500127](https://user-images.githubusercontent.com/76707524/131330877-10d60a3c-7780-40fa-9e65-04e8d77c1502.jpg)
+    ![KakaoTalk_20210827_155500127_05](https://user-images.githubusercontent.com/76707524/131331058-e24020dc-7e45-49d1-bf51-4397daede469.jpg)
+    
+  + ### 중고거래장터(홈 화면)
+    ![KakaoTalk_20210827_155500127_01](https://user-images.githubusercontent.com/76707524/131331166-aeb9ab3c-431f-45d1-ae7c-11134c420ba2.jpg)
+    
+  + ### 채팅방목록
+    ![KakaoTalk_20210827_155513341](https://user-images.githubusercontent.com/76707524/131331214-8c3fc3ec-9e19-4612-9363-330ae63937f9.jpg)
+
+  + ### 채팅화면
+    ![KakaoTalk_20210827_155500127](https://user-images.githubusercontent.com/76707524/131331244-a6cf385a-cb14-49ea-a6a5-34ef85eaf062.jpg)
+    
+  + ### 지도화면(사물함 위치)
+    ![KakaoTalk_20210827_155500127_02](https://user-images.githubusercontent.com/76707524/131331299-83f35a05-0b12-475b-b1f6-4b738ae8c762.jpg)
+    
+  + ### 마이페이지
+    ![KakaoTalk_20210827_155500127_04](https://user-images.githubusercontent.com/76707524/131331334-bfa2bc8f-4510-4860-864a-3ca65d60c781.jpg)
     
 ## 5. 각 클래스별 코드
   + ### MainActivity(LoginActivity)
