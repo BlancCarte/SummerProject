@@ -654,4 +654,5 @@ class MyPageFragment : Fragment() {
     주 3회이상 무조건 미팅
   + ### 추후목표
     상품 등록시, 위치를 등록하여 Map에 표시.
+    
     사물함 예약기능 및 사물함 위치 DB에추가, Map에 마커 표시
