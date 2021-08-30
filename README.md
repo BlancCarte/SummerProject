@@ -1,4 +1,8 @@
 # SummerProject(오렌지마켓)
+  구글플레이스토어 링크
+  
+  https://play.google.com/store/apps/details?id=com.orangemarket.orangemarket
+  
 ## 목차소개
   1. 소개
   2. 기획서
@@ -65,8 +69,9 @@
       3. 이메일 인증을 통한 회원가입
     + #### 적용기술
       1. 개발 툴 : Android Studio
-      2. Android Studio-FireBase 연동을 통한 Android Studio상에서 쿼리수정
+      2. DB : Firebase-Authentication, Firebase-RealtimeDatabase, Firebase-FireStore, Firebase-Storage
       3. API : Marshmallow
+      4. GoogleMap API 사용
    + ### 수행 방법 및 일정
      + #### 수행방법
        매일 한 기능씩 할당량을 정해놓은 후, 일주일에 주말을 제외한 3~5일 미팅을 가지며 프로젝트 진행 
